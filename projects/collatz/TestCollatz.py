@@ -20,7 +20,7 @@ To test the program:
 import StringIO
 import unittest
 
-from Collatz2 import collatz_read, collatz_eval, collatz_print, collatz_solve
+from Collatz import collatz_read, collatz_eval, collatz_print, collatz_solve
 
 # -----------
 # TestCollatz

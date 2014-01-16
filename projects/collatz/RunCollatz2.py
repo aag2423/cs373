@@ -22,7 +22,7 @@ To document the program
 
 import sys
 
-from Collatz import collatz_solve
+from Collatz2 import collatz_solve
 
 # ----
 # main
