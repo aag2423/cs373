@@ -2,7 +2,7 @@
 
 # ------------------------------
 # projects/collatz/RunCollatz.py
-# Copyright (C) 2013
+# Copyright (C) 2014
 # Glenn P. Downing
 # -------------------------------
 
@@ -22,7 +22,7 @@ To document the program
 
 import sys
 
-from Collatz2 import collatz_solve
+from Collatz import collatz_solve
 
 # ----
 # main

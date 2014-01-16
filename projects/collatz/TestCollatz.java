@@ -1,6 +1,6 @@
 // ---------------------------------
 // projects/collatz/TestCollatz.java
-// Copyright (C) 2013
+// Copyright (C) 2014
 // Glenn P. Downing
 // ---------------------------------
 
