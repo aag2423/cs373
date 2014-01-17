@@ -36,7 +36,7 @@ Collatz.zip: makefile                                   \
              SphereCollatz.py                           \
              TestCollatz.py TestCollatz.out
 	zip -r Collatz.zip                                \
-	       makefile                                   \
+           makefile                                   \
            Collatz.html Collatz.log Collatz.py        \
            RunCollatz.in RunCollatz.out RunCollatz.py \
            SphereCollatz.py                           \
