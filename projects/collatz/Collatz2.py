@@ -19,6 +19,8 @@ def collatz_read (r) :
         b = int(l[0])
         e = int(l[1])
         yield [b, e]
+    for s in r :
+        yield map(int, s.split())
     """
     return (map(int, s.split()) for s in r)
 
