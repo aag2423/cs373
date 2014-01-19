@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # --------
 # Hello.py
 # --------
 
-print "Nothing to be done."
+print("Nothing to be done.")
 
 """
 Implementation started in 1989 by Guido van Rossum of the Netherlands, now at Dropbox.

@@ -1,33 +1,49 @@
-// -----------------------------
-// projects/collatz/Collatz.java
+// ------------------------------
+// projects/collatz/Collatz2.java
 // Copyright (C) 2014
 // Glenn P. Downing
-// -----------------------------
+// ------------------------------
 
 import java.io.IOException;
 import java.io.Writer;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
-public final class Collatz {
+public final class Collatz2 {
     // ----
     // read
     // ----
 
-    /**
-     * reads two ints into a[0] and a[1]
-     * @param r a  java.util.Scanner
-     * @param a an array of int
-     * @return true if that succeeds, false otherwise
-     */
-    public static boolean read (Scanner r, int[] a) {
-        if (!r.hasNextInt())
-            return false;
-        a[0] = r.nextInt();
-        a[1] = r.nextInt();
-        assert a[0] > 0;
-        assert a[1] > 0;
-        return true;}
+    static class read implements Iterable<int[]>, Iterator<int[]> {
+        Scanner _r;
+
+        /**
+         * @return true if not empty
+         */
+        read (Scanner r) {
+            _r = r;}
+
+        public boolean hasNext () {
+            return _r.hasNext();}
+
+        public Iterator<int[]> iterator () {
+            return this;}
+
+        /**
+         * reads two ints into a[0] and a[1]
+         * @return an array of int
+         */
+        public int[] next () {
+            final int[] a = {0, 0};
+            a[0] = _r.nextInt();
+            a[1] = _r.nextInt();
+            assert a[0] > 0;
+            assert a[1] > 0;
+            return a;}
+
+        public void remove ()
+            {}}
 
     // ----
     // eval
@@ -73,7 +89,6 @@ public final class Collatz {
      * @param w a java.io.Writer
      */
     public static void solve (Scanner r, Writer w) throws IOException {
-        final int[] a = {0, 0};
-        while (read(r, a)) {
+        for (int[] a : new read(r)) {
             final int v = eval(a[0], a[1]);
             print(w, a[0], a[1], v);}}}
