@@ -41,10 +41,10 @@ public final class TestCollatz2 extends TestCase {
     public void testRead () {
         final Scanner         r = new Scanner("1 10\n");
         final Iterator<int[]> p = new Collatz2.read(r);
-    	Assert.assertTrue(p.hasNext());
-    	int[] a = p.next();
-    	Assert.assertTrue(a[0] ==  1);
-    	Assert.assertTrue(a[1] == 10);}
+        Assert.assertTrue(p.hasNext());
+        int[] a = p.next();
+        Assert.assertTrue(a[0] ==  1);
+        Assert.assertTrue(a[1] == 10);}
 
     // ----
     // eval
@@ -52,19 +52,19 @@ public final class TestCollatz2 extends TestCase {
 
     public void testEval1 () {
         final int v = Collatz2.eval(1, 10);
-    	Assert.assertTrue(v == 20);}
+        Assert.assertTrue(v == 20);}
 
     public void testEval2 () {
         final int v = Collatz2.eval(100, 200);
-    	Assert.assertTrue(v == 125);}
+        Assert.assertTrue(v == 125);}
 
     public void testEval3 () {
         final int v = Collatz2.eval(201, 210);
-    	Assert.assertTrue(v == 89);}
+        Assert.assertTrue(v == 89);}
 
     public void testEval4 () {
         final int v = Collatz2.eval(900, 1000);
-    	Assert.assertTrue(v == 174);}
+        Assert.assertTrue(v == 174);}
 
     // -----
     // print
@@ -73,7 +73,7 @@ public final class TestCollatz2 extends TestCase {
     public void testPrint () throws IOException {
         final Writer w = new StringWriter();
         Collatz2.print(w, 1, 10, 20);
-    	Assert.assertTrue(w.toString().equals("1 10 20\n"));}
+        Assert.assertTrue(w.toString().equals("1 10 20\n"));}
 
     // -----
     // solve
@@ -83,7 +83,7 @@ public final class TestCollatz2 extends TestCase {
         final Scanner r = new Scanner("1 10\n100 200\n201 210\n900 1000\n");
         final Writer  w = new StringWriter();
         Collatz2.solve(r, w);
-    	Assert.assertTrue(w.toString().equals("1 10 20\n100 200 125\n201 210 89\n900 1000 174\n"));}
+        Assert.assertTrue(w.toString().equals("1 10 20\n100 200 125\n201 210 89\n900 1000 174\n"));}
 
     // ----
     // main
