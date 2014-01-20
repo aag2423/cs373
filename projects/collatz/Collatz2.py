@@ -1,26 +1,47 @@
 #!/usr/bin/env python
 
-# ---------------------------
-# projects/collatz/Collatz.py
+# ----------------------------
+# projects/collatz/Collatz2.py
 # Copyright (C) 2014
 # Glenn P. Downing
-# ---------------------------
+# ----------------------------
 
 # ------------
 # collatz_read
 # ------------
 
-def collatz_read (r) :
+class Itr :
+    def __init__ (self, r) :
+        self.r = r
+
+    def __iter__ (self) :
+        return self
+
+    def next (self) :
+        s = self.r.readline()
+        if s == "" :
+            raise StopIteration()
+        return map(int, s.split())
+
+def collatz_read_1 (r) :
     """
-    r is a  reader
-    returns an generator that iterates over a sequence of lists of ints of length 2
-    for s in r :
-        l = s.split()
-        b = int(l[0])
-        e = int(l[1])
-        yield [b, e]
+    r is a reader
+    returns an iterator over a list of ints of length 2
+    """
+    return Itr(r)
+
+def collatz_read_2 (r) :
+    """
+    r is a reader
+    returns a generator over a list of ints of length 2
+    """
     for s in r :
         yield map(int, s.split())
+
+def collatz_read_3 (r) :
+    """
+    r is a reader
+    returns a generator over a list of ints of length 2
     """
     return (map(int, s.split()) for s in r)
 
@@ -63,6 +84,6 @@ def collatz_solve (r, w) :
     r is a reader
     w is a writer
     """
-    for t in collatz_read(r) :
+    for t in collatz_read_3(r) :
         v = collatz_eval(t)
         collatz_print(w, t, v)
