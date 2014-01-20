@@ -11,17 +11,17 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public final class Collatz2 {
-    // ----
-    // read
-    // ----
+    // ---
+    // Itr
+    // ---
 
-    static class read implements Iterable<int[]>, Iterator<int[]> {
+    private static class Itr implements Iterable<int[]>, Iterator<int[]> {
         Scanner _r;
 
         /**
          * @return true if not empty
          */
-        read (Scanner r) {
+        public Itr (Scanner r) {
             _r = r;}
 
         public boolean hasNext () {
@@ -44,6 +44,13 @@ public final class Collatz2 {
 
         public void remove ()
             {}}
+
+    // ----
+    // read
+    // ----
+
+    public static Iterable<int[]> read (Scanner r) {
+        return new Itr(r);}
 
     // ----
     // eval
@@ -89,6 +96,6 @@ public final class Collatz2 {
      * @param w a java.io.Writer
      */
     public static void solve (Scanner r, Writer w) throws IOException {
-        for (int[] a : new read(r)) {
+        for (int[] a : read(r)) {
             final int v = eval(a[0], a[1]);
             print(w, a[0], a[1], v);}}}
