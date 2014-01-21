@@ -12,13 +12,13 @@ Python is procedural, object-oriented, dynamically typed, and garbage collected.
 """
 
 """
-% python -V
-Python 2.7.3
+% python3 -V
+Python 3.2.3
 %
 
 
 
-% python Hello.py
+% python3 Hello.py
 Nothing to be done.
 %
 
@@ -31,8 +31,8 @@ Nothing to be done.
 
 
 
-% python
-Python 2.7.3 (default, Aug  1 2012, 05:14:39)
+% python3
+Python 3.2.3 (default, Sep 25 2013, 18:22:43)
 [GCC 4.6.3] on linux2
 Type "help", "copyright", "credits" or "license" for more information.
 
@@ -44,13 +44,14 @@ Nothing to be done.
 
 
 
-% python
-Python 2.7.3 (default, Aug  1 2012, 05:14:39)
+% python3
+Python 3.2.3 (default, Sep 25 2013, 18:22:43)
 [GCC 4.6.3] on linux2
 Type "help", "copyright", "credits" or "license" for more information.
 
 >>> help()
-Welcome to Python 2.6!  This is the online help utility.
+
+Welcome to Python 3.2!  This is the online help utility.
 
 If this is your first time using Python, you should definitely check out
 the tutorial on the Internet at http://docs.python.org/tutorial/.
@@ -65,18 +66,61 @@ of what it does; to list the modules whose summaries contain a given word
 such as "spam", type "modules spam".
 
 help> range
+
 Help on built-in function range in module __builtin__:
 
 range(...)
-    range([start,] stop[, step]) -> list of integers
+Help on class range in module builtins:
 
-    Return a list containing an arithmetic progression of integers.
-    range(i, j) returns [i, i+1, i+2, ..., j-1]; start (!) defaults to 0.
-    When step is given, it specifies the increment (or decrement).
-    For example, range(4) returns [0, 1, 2, 3].  The end point is omitted!
-    These are exactly the valid indices for a list of 4 elements.
+class range(object)
+ |  range([start,] stop[, step]) -> range object
+ |
+ |  Returns a virtual sequence of numbers from start to stop by step.
+ |
+ |  Methods defined here:
+ |
+ |  __contains__(...)
+ |      x.__contains__(y) <==> y in x
+ |
+ |  __getattribute__(...)
+ |      x.__getattribute__('name') <==> x.name
+ |
+ |  __getitem__(...)
+ |      x.__getitem__(y) <==> x[y]
+ |
+ |  __iter__(...)
+ |      x.__iter__() <==> iter(x)
+ |
+ |  __len__(...)
+ |      x.__len__() <==> len(x)
+ |
+ |  __reduce__(...)
+ |
+ |  __repr__(...)
+ |      x.__repr__() <==> repr(x)
+ |
+ |  __reversed__(...)
+ |      Returns a reverse iterator.
+ |
+ |  count(...)
+ |      rangeobject.count(value) -> integer -- return number of occurrences of value
+ |
+ |  index(...)
+ |      rangeobject.index(value, [start, [stop]]) -> integer -- return index of value.
+ |      Raises ValueError if the value is not present.
+ |
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |
+ |  __new__ = <built-in method __new__ of type object>
+ |      T.__new__(S, ...) -> a new object with type S, a subtype of T
 
 help> quit
+
+You are now leaving help and returning to the Python interpreter.
+If you want to ask for help on a particular object directly from the
+interpreter, you can type "help(object)".  Executing "help('string')"
+has the same effect as typing a particular string at the help> prompt.
 
 >>> quit()
 %
@@ -84,7 +128,7 @@ help> quit
 
 
 % python
-Python 2.7.3 (default, Aug  1 2012, 05:14:39)
+Python 3.2.3 (default, Sep 25 2013, 18:22:43)
 [GCC 4.6.3] on linux2
 Type "help", "copyright", "credits" or "license" for more information.
 
