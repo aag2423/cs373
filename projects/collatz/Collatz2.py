@@ -17,7 +17,7 @@ class Itr :
     def __iter__ (self) :
         return self
 
-    def next (self) :
+    def __next__ (self) :
         s = self.r.readline()
         if s == "" :
             raise StopIteration()
