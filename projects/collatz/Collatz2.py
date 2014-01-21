@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # ----------------------------
 # projects/collatz/Collatz2.py
@@ -49,22 +49,24 @@ def collatz_read_3 (r) :
 # collatz_eval
 # ------------
 
-def collatz_eval ((i, j)) :
+def collatz_eval (i, j) :
     """
     i is the beginning of the range, inclusive
     j is the end       of the range, inclusive
     return the max cycle length in the range [i, j]
     """
+    assert(i > 0)
+    assert(j > 0)
     # <your code>
     v = 1
-    assert v > 0
+    assert(v > 0)
     return v
 
 # -------------
 # collatz_print
 # -------------
 
-def collatz_print (w, (i, j), v) :
+def collatz_print (w, i, j, v) :
     """
     prints the values of i, j, and v
     w is a writer
@@ -84,6 +86,7 @@ def collatz_solve (r, w) :
     r is a reader
     w is a writer
     """
-    for t in collatz_read_3(r) :
-        v = collatz_eval(t)
-        collatz_print(w, t, v)
+    for m in collatz_read_3(r) :
+        i, j = list(m)
+        v = collatz_eval(i, j)
+        collatz_print(w, i, j, v)

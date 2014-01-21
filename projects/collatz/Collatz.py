@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # ---------------------------
 # projects/collatz/Collatz.py
@@ -23,8 +23,6 @@ def collatz_read (r, a) :
     l = s.split()
     a[0] = int(l[0])
     a[1] = int(l[1])
-    assert a[0] > 0
-    assert a[1] > 0
     return True
 
 # ------------
@@ -37,11 +35,11 @@ def collatz_eval (i, j) :
     j is the end       of the range, inclusive
     return the max cycle length in the range [i, j]
     """
-    assert i > 0
-    assert j > 0
+    assert(i > 0)
+    assert(j > 0)
     # <your code>
     v = 1
-    assert v > 0
+    assert(v > 0)
     return v
 
 # -------------
@@ -70,5 +68,6 @@ def collatz_solve (r, w) :
     """
     a = [0, 0]
     while collatz_read(r, a) :
-        v = collatz_eval(a[0], a[1])
-        collatz_print(w, a[0], a[1], v)
+        i, j = a
+        v = collatz_eval(i, j)
+        collatz_print(w, i, j, v)

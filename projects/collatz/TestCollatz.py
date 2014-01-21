@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # -------------------------------
 # projects/collatz/TestCollatz.py
@@ -17,10 +17,8 @@ To test the program:
 # imports
 # -------
 
-import StringIO
+import io
 import unittest
-
-from Collatz import collatz_read, collatz_eval, collatz_print, collatz_solve
 
 # -----------
 # TestCollatz
@@ -32,7 +30,7 @@ class TestCollatz (unittest.TestCase) :
     # ----
 
     def test_read (self) :
-        r = StringIO.StringIO("1 10\n")
+        r = io.StringIO("1 10\n")
         a = [0, 0]
         b = collatz_read(r, a)
         self.assert_(b    == True)
@@ -64,7 +62,7 @@ class TestCollatz (unittest.TestCase) :
     # -----
 
     def test_print (self) :
-        w = StringIO.StringIO()
+        w = io.StringIO()
         collatz_print(w, 1, 10, 20)
         self.assert_(w.getvalue() == "1 10 20\n")
 
@@ -73,8 +71,8 @@ class TestCollatz (unittest.TestCase) :
     # -----
 
     def test_solve (self) :
-        r = StringIO.StringIO("1 10\n100 200\n201 210\n900 1000\n")
-        w = StringIO.StringIO()
+        r = io.StringIO("1 10\n100 200\n201 210\n900 1000\n")
+        w = io.StringIO()
         collatz_solve(r, w)
         self.assert_(w.getvalue() == "1 10 20\n100 200 125\n201 210 89\n900 1000 174\n")
 
@@ -82,6 +80,6 @@ class TestCollatz (unittest.TestCase) :
 # main
 # ----
 
-print "TestCollatz.py"
+print("TestCollatz.py")
 unittest.main()
-print "Done."
+print("Done.")
