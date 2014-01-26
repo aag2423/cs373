@@ -10,41 +10,37 @@ import java.io.Writer;
 import java.util.Iterator;
 import java.util.Scanner;
 
+class Itr implements Iterable<int[]>, Iterator<int[]> {
+    Scanner _r;
+
+    /**
+     * @return true if not empty
+     */
+    public Itr (Scanner r) {
+        _r = r;}
+
+    public boolean hasNext () {
+        return _r.hasNext();}
+
+    public Iterator<int[]> iterator () {
+        return this;}
+
+    /**
+     * reads two ints into a[0] and a[1]
+     * @return an array of int
+     */
+    public int[] next () {
+        final int[] a = {0, 0};
+        a[0] = _r.nextInt();
+        a[1] = _r.nextInt();
+        assert a[0] > 0;
+        assert a[1] > 0;
+        return a;}
+
+    public void remove ()
+        {}}
+
 public final class Collatz2 {
-    // ---
-    // Itr
-    // ---
-
-    private static class Itr implements Iterable<int[]>, Iterator<int[]> {
-        Scanner _r;
-
-        /**
-         * @return true if not empty
-         */
-        public Itr (Scanner r) {
-            _r = r;}
-
-        public boolean hasNext () {
-            return _r.hasNext();}
-
-        public Iterator<int[]> iterator () {
-            return this;}
-
-        /**
-         * reads two ints into a[0] and a[1]
-         * @return an array of int
-         */
-        public int[] next () {
-            final int[] a = {0, 0};
-            a[0] = _r.nextInt();
-            a[1] = _r.nextInt();
-            assert a[0] > 0;
-            assert a[1] > 0;
-            return a;}
-
-        public void remove ()
-            {}}
-
     // ----
     // read
     // ----

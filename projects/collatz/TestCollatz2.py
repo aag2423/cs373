@@ -8,9 +8,9 @@
 
 """
 To test the program:
-    % python TestCollatz.py > TestCollatz.out
+    % python TestCollatz.py >& TestCollatz.out
     % chmod ugo+x TestCollatz.py
-    % TestCollatz.py > TestCollatz.out
+    % TestCollatz.py >& TestCollatz.out
 """
 
 # -------

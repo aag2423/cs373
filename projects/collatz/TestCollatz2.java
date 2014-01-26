@@ -6,9 +6,9 @@
 
 /*
 To test the program:
-    % locate junit4-4.8.1.jar
-    /usr/share/java/junit4-4.8.1.jar
-    % setenv CLASSPATH .:/usr/share/java/junit4-4.8.1.jar
+    % locate junit4-4.8.2.jar
+    /usr/share/java/junit4-4.8.2.jar
+    % setenv CLASSPATH .:/usr/share/java/junit4-4.8.2.jar
     % javac -Xlint TestCollatz2.java
     % java  -ea    TestCollatz2 >& TestCollatz.java.out
 */
@@ -40,7 +40,8 @@ public final class TestCollatz2 extends TestCase {
 
     public void testRead () {
         final Scanner         r = new Scanner("1 10\n");
-        final Iterator<int[]> p = new Collatz2.read(r);
+        final Iterable<int[]> x = Collatz2.read(r);
+        final Iterator<int[]> p = x.iterator();
         Assert.assertTrue(p.hasNext());
         int[] a = p.next();
         Assert.assertTrue(a[0] ==  1);
