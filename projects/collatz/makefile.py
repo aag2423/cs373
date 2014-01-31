@@ -10,7 +10,7 @@ clean:
 	rm -f TestCollatz.out
 	rm -f *.pyc
 
-diff: RunCollatz.in RunCollatz.out RunCollatz.py
+diff: RunCollatz.in RunCollatz.py Collatz.py
 	RunCollatz.py < RunCollatz.in > RunCollatz.tmp
 	diff RunCollatz.out RunCollatz.tmp
 	rm RunCollatz.tmp
@@ -27,7 +27,7 @@ turnin-verify:
 Collatz.html: Collatz.py
 	pydoc -w Collatz
 
-Collatz.log:
+Collatz.log: Collatz.py
 	git log > Collatz.log
 
 Collatz.zip: makefile                                   \
@@ -42,8 +42,8 @@ Collatz.zip: makefile                                   \
            SphereCollatz.py                           \
            TestCollatz.py TestCollatz.out
 
-RunCollatz.out: RunCollatz.in RunCollatz.py
+RunCollatz.out: RunCollatz.in RunCollatz.py Collatz.py
 	RunCollatz.py < RunCollatz.in > RunCollatz.out
 
-TestCollatz.out: TestCollatz.py
+TestCollatz.out: TestCollatz.py Collatz.py
 	TestCollatz.py > TestCollatz.out
