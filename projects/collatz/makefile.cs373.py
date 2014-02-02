@@ -46,4 +46,4 @@ RunCollatz.out: RunCollatz.in RunCollatz.py Collatz.py
 	RunCollatz.py < RunCollatz.in > RunCollatz.out
 
 TestCollatz.out: TestCollatz.py Collatz.py
-	TestCollatz.py > TestCollatz.out
+	TestCollatz.py >& TestCollatz.out

@@ -1,7 +1,7 @@
 cs:
 
 config:
-	git config --list
+	git config -l
 
 count:
 	ls -al | grep "RunCollatz.in"   | wc -l
