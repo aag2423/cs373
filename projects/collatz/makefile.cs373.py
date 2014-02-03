@@ -2,13 +2,13 @@ all:
 	make Collatz.zip
 
 clean:
+	rm -f *.pyc
 	rm -f Collatz.html
 	rm -f Collatz.log
 	rm -f Collatz.zip
 	rm -f RunCollatz.out
 	rm -f RunCollatz.tmp
 	rm -f TestCollatz.out
-	rm -f *.pyc
 
 diff: RunCollatz.in RunCollatz.py Collatz.py
 	RunCollatz.py < RunCollatz.in > RunCollatz.tmp
