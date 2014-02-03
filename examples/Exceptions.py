@@ -28,6 +28,9 @@ except NameError as e :
 else :
     assert(False)
 
+assert(type(NameError) is type)
+assert(type(type)      is type)
+
 assert(issubclass(NameError,     Exception))
 assert(issubclass(Exception,     BaseException))
 assert(issubclass(NameError,     BaseException))
