@@ -117,7 +117,7 @@ assert(x == [ 2,  3,  4,  5,  6])
 assert(y == [10, 15, 20, 25, 30])
 
 x = [2, 3, 4, 5, 6]
-y = [v * 5 for v in x]                 # list comprehension
+y = [v * 5 for v in x]                  # list comprehension
 assert(type(y) is list)
 assert(x       == [2,   3,  4,  5,  6])
 assert(y       == [10, 15, 20, 25, 30])
