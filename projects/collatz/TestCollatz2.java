@@ -52,20 +52,28 @@ public final class TestCollatz2 extends TestCase {
     // ----
 
     public void testEval1 () {
-        final int v = Collatz2.eval(1, 10);
-        Assert.assertTrue(v == 20);}
+        final Iterable<int[]> x = Collatz2.eval(new ReadItr(new Scanner("1 10\n")));
+        final Iterator<int[]> p = x.iterator();
+        final int[]           a = p.next();
+        Assert.assertTrue(a[0] == 20);}
 
     public void testEval2 () {
-        final int v = Collatz2.eval(100, 200);
-        Assert.assertTrue(v == 125);}
+        final Iterable<int[]> x = Collatz2.eval(new ReadItr(new Scanner("100 200\n")));
+        final Iterator<int[]> p = x.iterator();
+        final int[]           a = p.next();
+        Assert.assertTrue(a[0] == 20);}
 
     public void testEval3 () {
-        final int v = Collatz2.eval(201, 210);
-        Assert.assertTrue(v == 89);}
+        final Iterable<int[]> x = Collatz2.eval(new ReadItr(new Scanner("201 210\n")));
+        final Iterator<int[]> p = x.iterator();
+        final int[]           a = p.next();
+        Assert.assertTrue(a[0] == 20);}
 
     public void testEval4 () {
-        final int v = Collatz2.eval(900, 1000);
-        Assert.assertTrue(v == 174);}
+        final Iterable<int[]> x = Collatz2.eval(new ReadItr(new Scanner("900 1000\n")));
+        final Iterator<int[]> p = x.iterator();
+        final int[]           a = p.next();
+        Assert.assertTrue(a[0] == 20);}
 
     // -----
     // print
@@ -73,7 +81,7 @@ public final class TestCollatz2 extends TestCase {
 
     public void testPrint () throws IOException {
         final Writer w = new StringWriter();
-        Collatz2.print(w, 1, 10, 20);
+        Collatz2.print(w, new EvalItr(new ReadItr(new Scanner("1 10\n"))));
         Assert.assertTrue(w.toString().equals("1 10 20\n"));}
 
     // -----

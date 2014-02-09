@@ -10,15 +10,48 @@ import java.io.Writer;
 import java.util.Iterator;
 import java.util.Scanner;
 
-class Itr implements Iterable<int[]>, Iterator<int[]> {
-    Scanner _r;
+class EvalItr implements Iterable<int[]>, Iterator<int[]> {
+    Iterator<int[]> _p;
+
+    public EvalItr (Iterable<int[]> a) {
+        _p = a.iterator();}
 
     /**
      * @return true if not empty
      */
-    public Itr (Scanner r) {
+    public boolean hasNext () {
+        return _p.hasNext();}
+
+    public Iterator<int[]> iterator () {
+        return this;}
+
+    /**
+     * @return an array of three ints, i, j, and v
+     * @       i the beginning of the range, inclusive
+     * @       j the end       of the range, inclusive
+     * @       v the max cycle length
+     */
+    public int[] next () {
+        final int[] a = _p.next();
+        assert a[0] > 0;
+        assert a[1] > 0;
+        // <your code>
+        int v = 1;
+        assert v > 0;
+        return new int[]{a[0], a[1], v};}
+
+    public void remove ()
+        {}}
+
+class ReadItr implements Iterable<int[]>, Iterator<int[]> {
+    Scanner _r;
+
+    public ReadItr (Scanner r) {
         _r = r;}
 
+    /**
+     * @return true if not empty
+     */
     public boolean hasNext () {
         return _r.hasNext();}
 
@@ -26,8 +59,9 @@ class Itr implements Iterable<int[]>, Iterator<int[]> {
         return this;}
 
     /**
-     * reads two ints into a[0] and a[1]
-     * @return an array of int
+     * @return an array of two ints, i and j
+     * @       i the beginning of the range, inclusive
+     * @       j the end       of the range, inclusive
      */
     public int[] next () {
         final int[] a = {0, 0};
@@ -45,25 +79,30 @@ public final class Collatz2 {
     // read
     // ----
 
+    /**
+     * @param r a java.util.Scanner
+     * @return an iterable of an array of two ints, i and j
+     * @       i the beginning of the range, inclusive
+     * @       j the end       of the range, inclusive
+     */
     public static Iterable<int[]> read (Scanner r) {
-        return new Itr(r);}
+        return new ReadItr(r);}
 
     // ----
     // eval
     // ----
 
     /**
-     * @param i the beginning of the range, inclusive
-     * @param j the end       of the range, inclusive
-     * @return the max cycle length in the range [i, j]
+     * @param an iterable of an array of two ints, i and j
+     * @      i the beginning of the range, inclusive
+     * @      j the end       of the range, inclusive
+     * @return an iterable of an array of three ints, i, j, and v
+     * @      i the beginning of the range, inclusive
+     * @      j the end       of the range, inclusive
+     * @      v the max cycle length
      */
-    public static int eval (int i, int j) {
-        assert i > 0;
-        assert j > 0;
-        // <your code>
-        int v = 1;
-        assert v > 0;
-        return v;}
+    public static Iterable<int[]> eval (Iterable<int[]> a) {
+        return new EvalItr(a);}
 
     // -----
     // print
@@ -72,16 +111,15 @@ public final class Collatz2 {
     /**
      * prints the values of i, j, and v
      * @param w a java.io.Writer
-     * @param i the beginning of the range, inclusive
-     * @param j the end       of the range, inclusive
-     * @param v the max cycle length
+     * @param an iterable of an array of three ints, i, j, and v
+     * @      i the beginning of the range, inclusive
+     * @      j the end       of the range, inclusive
+     * @      v the max cycle length
      */
-    public static void print (Writer w, int i, int j, int v) throws IOException {
-        assert i > 0;
-        assert j > 0;
-        assert v > 0;
-        w.write(i + " " + j + " " + v + "\n");
-        w.flush();}
+    public static void print (Writer w, Iterable<int[]> a) throws IOException {
+        for (int[] b : a) {
+            w.write(b[0] + " " + b[1] + " " + b[2] + "\n");
+            w.flush();}}
 
     // -----
     // solve
@@ -92,6 +130,4 @@ public final class Collatz2 {
      * @param w a java.io.Writer
      */
     public static void solve (Scanner r, Writer w) throws IOException {
-        for (int[] a : read(r)) {
-            final int v = eval(a[0], a[1]);
-            print(w, a[0], a[1], v);}}}
+        print(w, eval(read(r)));}}

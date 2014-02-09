@@ -56,21 +56,24 @@ class TestCollatz (unittest.TestCase) :
     # eval
     # ----
 
-    def test_eval_1 (self, s) :
-        a = collatz_eval(([i, j] for i, j in ([1, 10])))
+    def test_eval_1 (self) :
+        a       = collatz_eval([(1, 10)])
         i, j, v = list(next(a))
         self.assertTrue(v == 20)
 
     def test_eval_2 (self) :
-        v = collatz_eval(100, 200)
+        a       = collatz_eval([(100, 200)])
+        i, j, v = list(next(a))
         self.assertTrue(v == 125)
 
     def test_eval_3 (self) :
-        v = collatz_eval(201, 210)
+        a       = collatz_eval([(201, 210)])
+        i, j, v = list(next(a))
         self.assertTrue(v == 89)
 
     def test_eval_4 (self) :
-        v = collatz_eval(900, 1000)
+        a       = collatz_eval([(900, 1000)])
+        i, j, v = list(next(a))
         self.assertTrue(v == 174)
 
     # -----
@@ -79,7 +82,7 @@ class TestCollatz (unittest.TestCase) :
 
     def test_print (self) :
         w = io.StringIO()
-        collatz_print(w, 1, 10, 20)
+        collatz_print(w, [(1, 10, 20)])
         self.assertTrue(w.getvalue() == "1 10 20\n")
 
     # -----
