@@ -123,6 +123,12 @@ assert(x       == [2,   3,  4,  5,  6])
 assert(y       == [10, 15, 20, 25, 30])
 
 x = [2, 3, 4, 5, 6]
+y = (v * 5 for v in x)                  # generator
+assert(type(y) is types.GeneratorType)
+assert(x       == [2,   3,  4,  5,  6])
+assert(list(y) == [10, 15, 20, 25, 30])
+
+x = [2, 3, 4, 5, 6]
 y = []
 for v in x :
     if v % 2 :
@@ -132,6 +138,11 @@ assert(y == [15, 25])
 
 x = [2, 3, 4, 5, 6]
 y = [v * 5 for v in x if v % 2]
+assert(x == [2, 3, 4, 5, 6])
+assert(y == [15, 25])
+
+x = [2, 3, 4, 5, 6]
+y = (v * 5 for v in x if v % 2)
 assert(x       == [2, 3, 4, 5, 6])
 assert(list(y) == [15, 25])
 
@@ -153,5 +164,14 @@ assert(x == [2, 3, 4])
 assert(y == [4, 5])
 assert(z == [2+4, 2+5, 3+4, 3+5, 4+4, 4+5])
 assert(z == [6, 7, 7, 8, 8, 9])
+
+x = [2, 3, 4]
+y = [4, 5]
+z = (v + w for v in x for w in y)
+assert(x       == [2, 3, 4])
+assert(y       == [4, 5])
+assert(list(z) == [2+4, 2+5, 3+4, 3+5, 4+4, 4+5])
+assert(list(z) != [6, 7, 7, 8, 8, 9])
+assert(list(z) == [])
 
 print("Done.")
