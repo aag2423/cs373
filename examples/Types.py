@@ -41,7 +41,7 @@ t = (2, "abc", 3.45)
 assert(type(t)     is tuple)
 assert(type(tuple) is type)
 
-s = set([2, "abc", 3.45])
+s = {2, "abc", 3.45}
 assert(type(s)   is set)
 assert(type(set) is type)
 
