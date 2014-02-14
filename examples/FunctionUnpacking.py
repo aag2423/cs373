@@ -4,6 +4,8 @@
 # FunctionUnpacking.py
 # --------------------
 
+import collections
+
 print("FunctionUnpacking.py")
 
 def f (x, y, z) :
@@ -51,11 +53,11 @@ assert(d                   == {'b' : 4, 'a' : 3})
 assert(d                   == {'a' : 3, 'b' : 4})
 assert(f(2, d, 5)          == [2, {'a' : 3, 'b' : 4}, 5])
 assert(f(2, 5, d)          == [2, 5, {'a' : 3, 'b' : 4}])
-#assert(type(d.keys())     is dict_keys)
+assert(isinstance(d.keys(), collections.KeysView))
 assert(f(2, *d.keys())     == [2, 'a', 'b'])
-#assert((type(d.values())) is dict_values)
+assert(isinstance(d.values(), collections.ValuesView))
 assert(f(2, *d.values())   == [2, 3, 4])
-#assert((type(d.items()))  is dict_items)
+assert(isinstance(d.items(), collections.ItemsView))
 assert(f(2, *d.items())    == [2, ('a', 3), ('b', 4)])
 assert(f(2, *d)            == [2, 'a', 'b'])
 #f(2, **d)                                                 # TypeError: f() got an unexpected keyword argument 'a'
