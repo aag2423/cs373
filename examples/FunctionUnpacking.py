@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # --------------------
 # FunctionUnpacking.py
@@ -47,18 +47,18 @@ assert(f(2, *s)   == [2, 3, 4])
 #f(2, 5, *s)                              # TypeError: f() takes exactly 3 arguments (4 given)
 
 d = {"b" : 4, "a" : 3}
-assert(d                  == {'b' : 4, 'a' : 3})
-assert(d                  == {'a' : 3, 'b' : 4})
-assert(f(2, d, 5)         == [2, {'a' : 3, 'b' : 4}, 5])
-assert(f(2, 5, d)         == [2, 5, {'a' : 3, 'b' : 4}])
-assert((type(d.keys()))   is list)
-assert(f(2, *d.keys())    == [2, 'a', 'b'])
-assert((type(d.values())) is list)
-assert(f(2, *d.values())  == [2, 3, 4])
-assert((type(d.items()))  is list)
-assert(f(2, *d.items())   == [2, ('a', 3), ('b', 4)])
-assert(f(2, *d)           == [2, 'a', 'b'])
-#f(2, **d)                                               # TypeError: f() got an unexpected keyword argument 'a'
+assert(d                   == {'b' : 4, 'a' : 3})
+assert(d                   == {'a' : 3, 'b' : 4})
+assert(f(2, d, 5)          == [2, {'a' : 3, 'b' : 4}, 5])
+assert(f(2, 5, d)          == [2, 5, {'a' : 3, 'b' : 4}])
+#assert(type(d.keys())     is dict_keys)
+assert(f(2, *d.keys())     == [2, 'a', 'b'])
+#assert((type(d.values())) is dict_values)
+assert(f(2, *d.values())   == [2, 3, 4])
+#assert((type(d.items()))  is dict_items)
+assert(f(2, *d.items())    == [2, ('a', 3), ('b', 4)])
+assert(f(2, *d)            == [2, 'a', 'b'])
+#f(2, **d)                                                 # TypeError: f() got an unexpected keyword argument 'a'
 
 d = {"z" : 4, "y" : 3}
 assert(f(2, **d) == [2, 3, 4])
@@ -67,11 +67,11 @@ assert(f(2, **d) == [2, 3, 4])
 #f(2, 5, **d)                  # TypeError: f() got multiple values for keyword argument 'y'
 
 d = {"z" : 4, "y" : 3, "a" : 2}
-#f(2, **d)                       # TypeError: f() got an unexpected keyword argument 'a'
-#f(**d)                          # TypeError: f() got an unexpected keyword argument 'a'
+#f(2, **d)                      # TypeError: f() got an unexpected keyword argument 'a'
+#f(**d)                         # TypeError: f() got an unexpected keyword argument 'a'
 
 d = {"z" : 4, "y" : 3, "x" : 2}
-#f(2, **d)                       # TypeError: f() got multiple values for keyword argument 'x'
+#f(2, **d)                      # TypeError: f() got multiple values for keyword argument 'x'
 assert(f(**d) == [2, 3, 4])
 
 print("Done.")
