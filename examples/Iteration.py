@@ -174,4 +174,16 @@ assert(list(z) == [2+4, 2+5, 3+4, 3+5, 4+4, 4+5])
 assert(list(z) != [6, 7, 7, 8, 8, 9])
 assert(list(z) == [])
 
+x = {2 : "abc", 3 : "def", 4 : "ghi"}
+y = {}
+for k, v in x.items() :
+    y[k] = v + "xyz"
+assert(x == {2 : "abc", 3 : "def", 4 : "ghi"})
+assert(y == {2 : "abcxyz", 3 : "defxyz", 4 : "ghixyz"})
+
+x = {2 : "abc", 3 : "def", 4 : "ghi"}
+y = {k : v + "xyz" for k, v in x.items()}
+assert(x == {2 : "abc", 3 : "def", 4 : "ghi"})
+assert(y == {2 : "abcxyz", 3 : "defxyz", 4 : "ghixyz"})
+
 print("Done.")
