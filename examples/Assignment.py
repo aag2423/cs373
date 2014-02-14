@@ -12,9 +12,9 @@ i, j  = 2, 3
 assert(i == 2)
 assert(j == 3)
 
-#i, j = "a"     # ValueError: need more than 1 value to unpack
-#i, j = "abc"   # ValueError: too many values to unpack
-i, j = "ab"     # a string
+#i, j = "a"      # ValueError: need more than 1 value to unpack
+#i, j = "abc"    # ValueError: too many values to unpack
+i, j = "ab"      # a string
 assert(i == "a")
 assert(j == "b")
 
@@ -48,9 +48,9 @@ assert(j == 3)
 assert(i == 2)
 assert(j == 3)
 
-#(i, j) = "a"     # ValueError: need more than 1 value to unpack
-#(i, j) = "abc"   # ValueError: too many values to unpack
-(i, j) = "ab"     # a string
+#(i, j) = "a"    # ValueError: need more than 1 value to unpack
+#(i, j) = "abc"  # ValueError: too many values to unpack
+(i, j) = "ab"    # a string
 assert(i == "a")
 assert(j == "b")
 
@@ -84,9 +84,9 @@ assert(j == 3)
 assert(i == 2)
 assert(j == 3)
 
-#[i, j] = "a"     # ValueError: need more than 1 value to unpack
-#[i, j] = "abc"   # ValueError: too many values to unpack
-[i, j] = "ab"     # a string
+#[i, j] = "a"    # ValueError: need more than 1 value to unpack
+#[i, j] = "abc"  # ValueError: too many values to unpack
+[i, j] = "ab"    # a string
 assert(i == "a")
 assert(j == "b")
 
@@ -128,13 +128,13 @@ assert(m == 3)
 
 i = 2
 j = 3
-i, j = j, i   # swap
+i, j = j, i    # swap
 assert(i == 3)
 assert(j == 2)
 
 i = 2
 j = 3
-i, j = j, i = 4, 5
+i, j = j, i = 4, 5 # left to right
 assert(i == 5)
 assert(j == 4)
 

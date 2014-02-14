@@ -201,7 +201,7 @@ j = 5
 k = 7
 l = 8
 assert((i < j) and (j < k) and (k < l))
-assert((i < j < k < l))
+assert(i < j < k < l)
 
 a = True
 b = True
