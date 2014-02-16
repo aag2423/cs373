@@ -20,6 +20,7 @@ assert(t           != (4, 3))
 assert(f(2, t,  5) == [2, (3, 4), (5,)])
 assert(f(2, 5,  t) == [2, 5, ((3, 4),)])
 assert(f(2, 5, *t) == [2, 5, (3, 4)])
+#f(2, y = 5, *t)                          # TypeError: f() got multiple values for argument 'y'
 
 l = [3, 4]
 assert(l           == [3, 4])
@@ -27,13 +28,15 @@ assert(l           != [4, 3])
 assert(f(2, l,  5) == [2, [3, 4], (5,)])
 assert(f(2, 5,  l) == [2, 5, ([3, 4],)])
 assert(f(2, 5, *l) == [2, 5, (3, 4)])
+#f(2, y = 5, *l)                          # TypeError: f() got multiple values for argument 'y'
 
-s = set([4, 3])
-assert(s           == set([4, 3]))
-assert(s           == set([3, 4]))
-assert(f(2, s,  5) == [2, set([3, 4]), (5,)])
-assert(f(2, 5,  s) == [2, 5, (set([3, 4]),)])
+s = {3, 4}
+assert(s           == {4, 3})
+assert(s           == {3, 4})
+assert(f(2, s,  5) == [2, {3, 4}, (5,)])
+assert(f(2, 5,  s) == [2, 5, ({3, 4},)])
 assert(f(2, 5, *s) == [2, 5, (3, 4)])
+#f(2, y = 5, *s)                          # TypeError: f() got multiple values for argument 'y'
 
 d = {"b" : 4, "a" : 3}
 assert(d                    == {'b' : 4, 'a' : 3})

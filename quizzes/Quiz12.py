@@ -9,7 +9,7 @@ CS373: Quiz #12 (5 pts) <Jake>
     (2 pts)
 
 0 1 2 3 4 else
-0 1 2
+0 1 2 3
 """
 
 for v in range(5) :
