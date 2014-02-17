@@ -22,11 +22,11 @@ assert(t          != (4, 3))
 assert(f(2, t, 5) == [2, (3, 4), 5])
 assert(f(2, 5, t) == [2, 5, (3, 4)])
 assert(f(2, *t)   == [2, 3, 4])
-#f(x = 2, *t)                        # f() got multiple values for argument 'x'
+assert(f(*s)      == [2, 3, 4])
 #f(*t, 2)                            # SyntaxError: invalid syntax
+#f(x = 2, *t)                        # f() got multiple values for argument 'x'
 #f(*t)                               # TypeError: f() takes exactly 3 arguments (2 given)
 #f(2, 5, *t)                         # TypeError: f() takes exactly 3 arguments (4 given)
-assert(f(*s)      == [2, 3, 4])
 #f(5, *s)                            # TypeError: f() takes exactly 3 arguments (4 given)
 
 l = [3, 4]
@@ -35,8 +35,8 @@ assert(l          != [4, 3])
 assert(f(2, l, 5) == [2, [3, 4], 5])
 assert(f(2, 5, l) == [2, 5, [3, 4]])
 assert(f(2, *l)   == [2, 3, 4])
-#f(x = 2, *l)                        # f() got multiple values for argument 'x'
 #f(*l, 2)                            # SyntaxError: only named arguments may follow *expression
+#f(x = 2, *l)                        # f() got multiple values for argument 'x'
 #f(*l)                               # TypeError: f() takes exactly 3 arguments (2 given)
 #f(2, 5, *l)                         # TypeError: f() takes exactly 3 arguments (4 given)
 
@@ -46,8 +46,8 @@ assert(s             == {3, 4})
 assert(f(2, s, 5)    == [2, {3, 4}, 5])
 assert(f(2, 5, s)    == [2, 5, {3, 4}])
 assert(set(f(2, *s)) == {2, 3, 4})
-#f(x = 2, *s)                           # f() got multiple values for argument 'x'
 #f(*s, 2)                               # SyntaxError: only named arguments may follow *expression
+#f(x = 2, *s)                           # f() got multiple values for argument 'x'
 #f(*s)                                  # TypeError: f() takes exactly 3 arguments (2 given)
 #f(2, 5, *s)                            # TypeError: f() takes exactly 3 arguments (4 given)
 

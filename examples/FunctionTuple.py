@@ -24,6 +24,7 @@ assert(t           != (4, 3))
 assert(f(2, t,  5) == [2, (3, 4), (5,)])
 assert(f(2, 5,  t) == [2, 5, ((3, 4),)])
 assert(f(2, 5, *t) == [2, 5, (3, 4)])
+assert(f(2, *t)    == [2, 3, (4,)])
 #f(2, y = 5, *t)                         # TypeError: f() got multiple values for argument 'y'
 
 l = [3, 4]
@@ -32,6 +33,7 @@ assert(l           != [4, 3])
 assert(f(2, l,  5) == [2, [3, 4], (5,)])
 assert(f(2, 5,  l) == [2, 5, ([3, 4],)])
 assert(f(2, 5, *l) == [2, 5, (3, 4)])
+assert(f(2, *l)    == [2, 3, (4,)])
 #f(2, y = 5, *l)                         # TypeError: f() got multiple values for argument 'y'
 
 s = {3, 4}
@@ -40,6 +42,7 @@ assert(s           == {3, 4})
 assert(f(2, s,  5) == [2, {3, 4}, (5,)])
 assert(f(2, 5,  s) == [2, 5, ({3, 4},)])
 assert(g(2, 5, *s) == [2, 5, {3, 4}])
+assert(g(2, *s)    == [2, 3, {4}])       # ?
 #g(2, y = 5, *s)                         # TypeError: f() got multiple values for argument 'y'
 
 d = {"b" : 4, "a" : 3}
@@ -51,7 +54,8 @@ assert(g(2, 5, *d.keys())   == [2, 5, {'a', 'b'}])
 assert(g(2, 5, *d.values()) == [2, 5, {3, 4}])
 assert(g(2, 5, *d.items())  == [2, 5, {('a', 3), ('b', 4)}])
 assert(g(2, 5, *d)          == [2, 5, {'a', 'b'}])
-#f(**d))                                                      # TypeError: f() got an unexpected keyword argument 'a'
+assert(g(2, *d)             == [2, 'b', {'a'}])              # ?
+#f(**d))                                                     # TypeError: f() got an unexpected keyword argument 'a'
 
 d = {"z" : 4, "y" : 3}
 #f(2, **d)             # TypeError: f() got an unexpected keyword argument 'z'
