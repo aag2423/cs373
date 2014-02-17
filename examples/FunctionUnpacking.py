@@ -75,6 +75,10 @@ assert(set(f(2, *d))          == {2, 'a', 'b'})
 #f(x = 2, *d)                                                # f() got multiple values for argument 'x'
 #f(2, **d)                                                   # TypeError: f() got an unexpected keyword argument 'a'
 
+d = {"z" : 4, "y" : 3, "x" : 2}
+#f(2, **d)                      # TypeError: f() got multiple values for keyword argument 'x'
+assert(f(**d) == [2, 3, 4])
+
 d = {"z" : 4, "y" : 3}
 assert(set(f(2,     **d)) == {2, 3, 4})
 assert(set(f(x = 2, **d)) == {2, 3, 4})
@@ -86,13 +90,9 @@ d = {"y" : 3}
 #f(2, 4, **d)                         # TypeError: f() got multiple values for argument 'y'
 assert(f(2, z = 4, **d) == [2, 3, 4])
 
-d = {"z" : 4, "y" : 3, "a" : 2}
-#f(2,     **d)                  # TypeError: f() got an unexpected keyword argument 'a'
-#f(x = 2, **d)                  # TypeError: f() got an unexpected keyword argument 'a'
-#f(**d)                         # TypeError: f() got an unexpected keyword argument 'a'
-
-d = {"z" : 4, "y" : 3, "x" : 2}
-#f(2, **d)                      # TypeError: f() got multiple values for keyword argument 'x'
-assert(f(**d) == [2, 3, 4])
+d = {"z" : 4, "y" : 3, "t" : 5}
+#f(2,     **d)                  # TypeError: f() got an unexpected keyword argument 't'
+#f(x = 2, **d)                  # TypeError: f() got an unexpected keyword argument 't'
+#f(**d)                         # TypeError: f() got an unexpected keyword argument 't'
 
 print("Done.")
