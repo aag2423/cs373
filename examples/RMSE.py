@@ -9,6 +9,13 @@ import math
 import sys
 import time
 
+print("RMSE.py")
+print(sys.version)
+print()
+
+def sqre_diff (x, y) :
+    return (x - y) ** 2
+
 def rmse_while (a, p) :
     """
     O(1) in space
@@ -16,9 +23,9 @@ def rmse_while (a, p) :
     """
     s = len(a)
     i = 0
-    v = 0.0
+    v = 0
     while i != s :
-        v += (a[i] - p[i]) ** 2
+        v += sqre_diff(a[i], p[i])
         i += 1
     return math.sqrt(v / s)
 
@@ -28,9 +35,9 @@ def rmse_for_zip_range (a, p) :
     O(n) in time
     """
     s = len(a)
-    v = 0.0
+    v = 0
     for i in range(s) :
-        v += (a[i] - p[i]) ** 2
+        v += sqre_diff(a[i], p[i])
         i += 1
     return math.sqrt(v / s)
 
@@ -41,9 +48,9 @@ def rmse_for_zip (a, p) :
     """
     s = len(a)
     z = zip(a, p)
-    v = 0.0
+    v = 0
     for x, y in z :
-        v += (x - y) ** 2
+        v += sqre_diff(x, y)
     return math.sqrt(v / s)
 
 def rmse_reduce (a, p) :
@@ -53,7 +60,7 @@ def rmse_reduce (a, p) :
     """
     s = len(a)
     z = zip(a, p)
-    v = functools.reduce(lambda v, a : v + (a[0] - a[1]) ** 2, z, 0.0)
+    v = functools.reduce(lambda v, a : v + sqre_diff(a[0], a[1]), z, 0.0)
     return math.sqrt(v / s)
 
 def rmse_sum_map (a, p) :
@@ -62,7 +69,7 @@ def rmse_sum_map (a, p) :
     O(n) in time
     """
     s = len(a)
-    v = sum(map(lambda x, y : (x - y) ** 2, a, p), 0.0)
+    v = sum(map(sqre_diff, a, p))
     return math.sqrt(v / s)
 
 def rmse_sum_list_zip (a, p) :
@@ -72,7 +79,7 @@ def rmse_sum_list_zip (a, p) :
     """
     s = len(a)
     z = zip(a, p)
-    v = sum([(x - y) ** 2 for x, y in z], 0.0)
+    v = sum([sqre_diff(x, y) for x, y in z])
     return math.sqrt(v / s)
 
 def rmse_sum_gen_zip (a, p) :
@@ -82,7 +89,7 @@ def rmse_sum_gen_zip (a, p) :
     """
     s = len(a)
     z = zip(a, p)
-    v = sum(((x - y) ** 2 for x, y in z), 0.0)
+    v = sum((sqre_diff(x, y) for x, y in z))
     return math.sqrt(v / s)
 
 def test (f) :
@@ -90,17 +97,13 @@ def test (f) :
     assert(str(f((2, 3, 4), (2, 3, 4))) == "0.0")
     assert(str(f((2, 3, 4), (3, 4, 5))) == "1.0")
     assert(str(f((2, 3, 4), (4, 3, 2))) == "1.632993161855452")
-    a = 100000 * [1]
-    p = 100000 * [5]
+    a = 1000000 * [1]
+    p = 1000000 * [5]
     b = time.clock()
     assert(str(f(a, p)) == "4.0")
     e = time.clock()
     print("%5.3f" % ((e - b) * 1000), "milliseconds")
     print()
-
-print("RMSE.py")
-print(sys.version)
-print()
 
 test(rmse_while)
 test(rmse_for_zip_range)
@@ -118,25 +121,25 @@ RMSE.py
 [GCC 4.2.1 Compatible Apple LLVM 5.0 (clang-500.2.79)]
 
 rmse_while
-41.915 milliseconds
+501.339 milliseconds
 
 rmse_for_zip_range
-41.233 milliseconds
+497.844 milliseconds
 
 rmse_for_zip
-34.312 milliseconds
+423.167 milliseconds
 
 rmse_reduce
-45.215 milliseconds
+545.354 milliseconds
 
 rmse_sum_map
-35.277 milliseconds
+430.414 milliseconds
 
 rmse_sum_list_zip
-35.209 milliseconds
+383.953 milliseconds
 
 rmse_sum_gen_zip
-32.994 milliseconds
+402.718 milliseconds
 
 Done.
 """

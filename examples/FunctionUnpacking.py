@@ -11,10 +11,6 @@ print("FunctionUnpacking.py")
 def f (x, y, z) :
     return [x, y, z]
 
-assert(f(2, 3, 4)     == [2, 3, 4])
-#assert(f(2, 3)       == None)      # TypeError: f() takes exactly 3 arguments (2 given)
-#assert(f(2, 3, 4, 5) == None)      # TypeError: f() takes exactly 3 arguments (4 given)
-
 t = (3, 4)
 s = (2, 3, 4)
 assert(t          == (3, 4))

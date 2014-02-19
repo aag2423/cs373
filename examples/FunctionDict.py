@@ -22,9 +22,7 @@ d = {"b" : 4, "a" : 3}
 assert(d                == {'b' : 4, 'a' : 3})
 assert(d                == {'a' : 3, 'b' : 4})
 assert(f(2, 5,     **d) == [2, 5, {'a' : 3, 'b' : 4}])
-assert(f(2, 5,     **d) == [2, 5, {'b' : 4, 'a' : 3}])
 assert(f(2, y = 5, **d) == [2, 5, {'a' : 3, 'b' : 4}])
-assert(f(2, y = 5, **d) == [2, 5, {'b' : 4, 'a' : 3}])
 
 d = {"y" : 3, "x" : 2}
 #f(2, **d)                   # TypeError: f() got multiple values for keyword argument 'x'

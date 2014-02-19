@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # ------------
 # Functions.py
 # ------------
 
+import functools
 import types
 
 print("Functions.py")
@@ -23,8 +24,8 @@ assert(hasattr(mult_1, "__call__"))
 assert(plus_1(2, 3) == 5)
 assert(mult_1(2, 3) == 6)
 
-assert(reduce(plus_1, [2, 3, 4]) ==  9)
-assert(reduce(mult_1, [2, 3, 4]) == 24)
+assert(functools.reduce(plus_1, [2, 3, 4]) ==  9)
+assert(functools.reduce(mult_1, [2, 3, 4]) == 24)
 
 plus_2 = lambda x, y : x + y
 mult_2 = lambda x, y : x * y
@@ -38,8 +39,8 @@ assert(hasattr(mult_2, "__call__"))
 assert(plus_2(2, 3) == 5)
 assert(mult_2(2, 3) == 6)
 
-assert(reduce(plus_2, [2, 3, 4]) ==  9)
-assert(reduce(mult_2, [2, 3, 4]) == 24)
+assert(functools.reduce(plus_2, [2, 3, 4]) ==  9)
+assert(functools.reduce(mult_2, [2, 3, 4]) == 24)
 
 class Plus_3 (object) :
     def my_call (self, x, y) :
@@ -73,29 +74,26 @@ assert(hasattr(mult_3b, "__call__"))
 assert(plus_3b(2, 3) == 5)
 assert(mult_3b(2, 3) == 6)
 
-assert(reduce(plus_3b, [2, 3, 4]) ==  9)
-assert(reduce(mult_3b, [2, 3, 4]) == 24)
+assert(functools.reduce(plus_3b, [2, 3, 4]) ==  9)
+assert(functools.reduce(mult_3b, [2, 3, 4]) == 24)
 
 plus_3u = Plus_3.my_call
 mult_3u = Mult_3.my_call
 
-assert(type(plus_3u) is types.MethodType)
-assert(type(mult_3u) is types.MethodType)
-
-assert(str(plus_3u)[1:8] == "unbound")
-assert(str(mult_3u)[1:8] == "unbound")
+assert(type(plus_3u) is types.FunctionType)
+assert(type(mult_3u) is types.FunctionType)
 
 assert(hasattr(plus_3u, "__call__"))
 assert(hasattr(mult_3u, "__call__"))
 
-#assert(plus_3u(2, 3) == 5 # TypeError: unbound method my_call() must be called with Plus_3 instance as first argument (got int instance instead))
-#assert(mult_3u(2, 3) == 6 # TypeError: unbound method my_call() must be called with Mult_3 instance as first argument (got int instance instead))
+#plus_3u(2, 3) # TypeError: unbound method my_call() must be called with Plus_3 instance as first argument (got int instance instead
+#mult_3u(2, 3) # TypeError: unbound method my_call() must be called with Mult_3 instance as first argument (got int instance instead
 
 assert(plus_3u(x, 2, 3) == 5)
 assert(mult_3u(y, 2, 3) == 6)
 
-#assert(reduce(plus_3u, [2, 3, 4]) ==  9 # TypeError: unbound method my_call() must be called with Plus_3 instance as first argument (got int instance instead))
-#assert(reduce(mult_3u, [2, 3, 4]) == 24 # TypeError: unbound method my_call() must be called with Mult_3 instance as first argument (got int instance instead))
+#functools.reduce(plus_3u, [2, 3, 4]) # TypeError: unbound method my_call() must be called with Plus_3 instance as first argument (got int instance instead
+#functools.reduce(mult_3u, [2, 3, 4]) # TypeError: unbound method my_call() must be called with Mult_3 instance as first argument (got int instance instead
 
 class Plus_4 (object) :
     @staticmethod
@@ -119,8 +117,8 @@ assert(hasattr(mult_4, "__call__"))
 assert(plus_4(2, 3) == 5)
 assert(mult_4(2, 3) == 6)
 
-assert(reduce(plus_4, [2, 3, 4]) ==  9)
-assert(reduce(mult_4, [2, 3, 4]) == 24)
+assert(functools.reduce(plus_4, [2, 3, 4]) ==  9)
+assert(functools.reduce(mult_4, [2, 3, 4]) == 24)
 
 class Plus_5 (object) :
     def __call__ (self, x, y) :
@@ -142,7 +140,7 @@ assert(hasattr(y, "__call__"))
 assert(x(2, 3) == 5)
 assert(y(2, 3) == 6)
 
-assert(reduce(x, [2, 3, 4]) ==  9)
-assert(reduce(y, [2, 3, 4]) == 24)
+assert(functools.reduce(x, [2, 3, 4]) ==  9)
+assert(functools.reduce(y, [2, 3, 4]) == 24)
 
 print("Done.")
