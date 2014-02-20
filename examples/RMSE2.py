@@ -13,6 +13,9 @@ print("RMSE2.py")
 print(sys.version)
 print()
 
+def sqre_diff (x, y) :
+    return (x - y) ** 2
+
 def rmse_1 (a, p) :
     s = len(a)
     v = sum(map(sqre_diff, a, p))
@@ -30,9 +33,6 @@ def bind1st (tf, x) :
 
 def compose (f, g) :
     return lambda x, y : f(g(x, y))
-
-def sqre_diff (x, y) :
-    return (x - y) ** 2
 
 rmse_3 = compose(math.sqrt, compose(mean, bind1st(map, sqre_diff)))
 
