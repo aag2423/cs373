@@ -35,8 +35,6 @@ def f () :
     global v5           # global
     v5 = 10
 
-#   global v5           # SyntaxWarning: name 'v5' is assigned to before global declaration
-
 f()
 
 assert(v1 ==  1)
