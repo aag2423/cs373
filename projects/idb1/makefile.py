@@ -1,33 +1,33 @@
 all:
-	make IDB1.zip
+	make IDB.zip
 
 clean:
 	rm -f *.pyc
-	rm -f IDB1.html
-	rm -f IDB1.log
-	rm -f IDB1.zip
+	rm -f Models.html
+	rm -f IDB.log
+	rm -f IDB.zip
 
 turnin-list:
 	turnin --list acoomans cs373pj3
 
-turnin-submit: IDB1.zip
-	turnin --submit acoomans cs373pj3 IDB1.zip
+turnin-submit: IDB.zip
+	turnin --submit acoomans cs373pj3 IDB.zip
 
 turnin-verify:
 	turnin --verify acoomans cs373pj3
 
-IDB.html: IDB.py
+Models.html: Models.py
 	epydoc IDB
 
-IDB1.log:
-	git log > IDB1.log
+IDB.log:
+	git log > IDB.log
 
-IDB1.zip: makefile apiary.apib \
-           IDB.html IDB.log    \
-           IDB1.py IDB1.pdf    \
-           TestIDB1.py
-	zip -r IDB1.zip             \
-	       makefile apiary.apib \
-	       IDB.html IDB.log     \
-	       IDB1.py IDB1.pdf     \
-	       TestIDB1.py
+IDB.zip: makefile apiary.apib   \
+         Models.html Models.py  \
+         IDB.log     Report.pdf \
+         test.py
+	zip -r IDB.zip                 \
+           makefile    apiary.apib \
+           Models.html Models.py   \
+           IDB.log     Report.pdf  \
+           test.py
