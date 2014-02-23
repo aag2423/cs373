@@ -2,13 +2,13 @@ all:
 	make Netflix.zip
 
 clean:
+	rm -f *.pyc
 	rm -f Netflix.html
 	rm -f Netflix.log
 	rm -f Netflix.zip
 	rm -f RunNetflix.out
 	rm -f RunNetflix.tmp
 	rm -f TestNetflix.out
-	rm -f *.pyc
 
 diff: RunNetflix.in RunNetflix.py Netflix.py
 	RunNetflix.py < RunNetflix.in > RunNetflix.tmp

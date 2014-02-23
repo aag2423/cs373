@@ -8,8 +8,8 @@ count:
 	ls -al | grep "RunNetflix.out"  | wc -l
 	ls -al | grep "TestNetflix.py"  | wc -l
 	ls -al | grep "TestNetflix.out" | wc -l
-	ls -al | grep ".json"           | wc -l
-	ls -al | grep ".txt"            | wc -l
+	ls -al | grep "\.json"          | wc -l
+	ls -al | grep "\.txt"           | wc -l
 
 log:
 	git log
