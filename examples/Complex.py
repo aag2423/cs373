@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # ----------
 # Complex.py
@@ -6,7 +6,7 @@
 
 print("Complex.py")
 
-class My_Complex (object) :
+class My_Complex :
     def __init__ (self, r = 0, i = 0) :
         self.r = r
         self.i = i
@@ -41,7 +41,8 @@ y = My_Complex(i = 2)
 y = My_Complex(r = 3)
 z = My_Complex(2, 3)
 
-assert(str(z) == "(2, 3)")
+assert(z.__str__() == "(2, 3)")
+assert(str(z)      == "(2, 3)")
 
 t = z.__add__(z)
 assert(z == My_Complex(2, 3))
