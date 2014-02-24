@@ -39,8 +39,8 @@ I made a mistake writing this quiz. Below is the quiz I intended.
 
 [2, 3, 4]
 [2, 3, 4, 5]
-[6, 7, 8]
-[6, 7, 8, 9]
+[2, 3, 4, 5]
+[2, 3, 4, 5]
 """
 
 class A :
