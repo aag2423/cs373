@@ -6,7 +6,7 @@
 
 print("InstanceVariables.py")
 
-class A (object) :
+class A :
     def f (self) :
 #       self.v                        # AttributeError: 'A' object has no attribute 'v0'
         self.v0     = 0
@@ -21,33 +21,38 @@ class A (object) :
 
 x = A()
 assert(    hasattr(x, "f"))
+assert(    hasattr(x, "__dict__"))
 assert(not hasattr(x, "v0"))
 
 x.f()
-assert(    hasattr(x, "v0"))
-assert(    hasattr(x, "v1"))
-assert(not hasattr(x, "__v2"))
-assert(    hasattr(x, "_A__v2"))
-assert(not hasattr(x, "__v3"))
-assert(    hasattr(x, "_A__v3"))
-assert(not hasattr(x, "v4"))
 
-assert(x.v0     == 0)
-assert(x.v1     == 1)
-#assert(x.v2    == 2)  # AttributeError: 'A' object has no attribute 'v2'
-assert(x._A__v2 == 2)
-# assert(x.v3    == 3) # AttributeError: 'A' object has no attribute 'v3'
-assert(x._A__v3 == 3)
-#assert(x.v4    == 4)  # AttributeError: 'A' object has no attribute 'v4'
+assert(hasattr(x, "v0"))
+assert(x.v0             == 0)
+assert(x.__dict__["v0"] == 0)
 
-assert(hasattr(x, "__dict__"))
-assert(x.__dict__["v0"]     == 0)
-assert(x.__dict__["v1"]     == 1)
-#assert(x.__dict__["__v2"]  == 2) # KeyError: '__v2'
+assert(hasattr(x, "v1"))
+assert(x.v1             == 1)
+assert(x.__dict__["v1"] == 1)
+
+assert(not hasattr(x, "__v2"))   # __v2 is private
+#assert(x.__v2             == 2) # AttributeError: 'A' object has no attribute '__v2'
+#assert(x.__dict__["__v2"] == 2) # KeyError: '__v2'
+
+assert(hasattr(x, "_A__v2"))      # not really!
+assert(x._A__v2             == 2)
 assert(x.__dict__["_A__v2"] == 2)
-#assert(x.__dict__["__v3"]  == 3) # KeyError: '__v3'
+
+assert(not hasattr(x, "__v3"))   # __v3 is private
+#assert(x.__v3             == 3) # AttributeError: 'A' object has no attribute 'v3'
+#assert(x.__dict__["__v3"] == 3) # KeyError: '__v3'
+
+assert(hasattr(x, "_A__v3"))      # not really!
+assert(x._A__v3             == 3)
 assert(x.__dict__["_A__v3"] == 3)
-#assert(x.__dict__["v4"]    == 4) # KeyError: '__v4'
+
+assert(not hasattr(x, "v4"))
+#assert(x.v4             == 4)  # AttributeError: 'A' object has no attribute 'v4'
+#assert(x.__dict__["v4"] == 4) # KeyError: '__v4'
 
 y = A()
 y.f()
@@ -75,7 +80,7 @@ assert(not hasattr(A, "v1"))
 #assert(A.v1             == 1) # AttributeError: type object 'A' has no attribute 'v1'
 #assert(A.__dict__["v1"] == 1) # KeyError: 'v1'
 
-class B (object) :
+class B :
     v = [2]
 
 x = B()

@@ -8,32 +8,36 @@ print("GlobalVariables.py")
 
 v1 = 1
 v2 = 2
-v3 = 3
 v4 = 4
 v5 = 5
+v6 = 6
 
 def f () :
     assert(v1 == 1) # global
 
-    v2 = 7 # local
+    v2 = 10 # local
+
+    v3 = 11 # local
 
     try :
-        assert(v3 == 3) # local
-        assert(False)
-    except UnboundLocalError as e :
-        assert(len(e.args) == 1)
-        assert(e.args      == ("local variable 'v3' referenced before assignment",))
-    v3 = 8              # local
-
-    try :
-        v4 += 5         # local
+        assert(v4 == 4) # local
         assert(False)
     except UnboundLocalError as e :
         assert(len(e.args) == 1)
         assert(e.args      == ("local variable 'v4' referenced before assignment",))
+    v4 = 12             # local
 
-    global v5           # global
-    v5 = 10
+    try :
+        v5 += 13        # local
+        assert(False)
+    except UnboundLocalError as e :
+        assert(len(e.args) == 1)
+        assert(e.args      == ("local variable 'v5' referenced before assignment",))
+
+    global v6           # global
+    v6 = 14
+
+v3 = 3
 
 f()
 
@@ -41,6 +45,7 @@ assert(v1 ==  1)
 assert(v2 ==  2)
 assert(v3 ==  3)
 assert(v4 ==  4)
-assert(v5 == 10)
+assert(v5 ==  5)
+assert(v6 == 14)
 
 print("Done.")

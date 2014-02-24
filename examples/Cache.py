@@ -69,4 +69,18 @@ a = ()
 b = ()
 assert(a is b)
 
+a = set()
+b = set()
+assert(a is not b)
+assert(a ==     b)
+
+a = frozenset()
+b = frozenset()
+assert(a is b)
+
+a = {}
+b = {}
+assert(a is not b)
+assert(a ==     b)
+
 print("Done.")
