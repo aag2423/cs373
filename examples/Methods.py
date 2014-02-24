@@ -10,7 +10,8 @@ class A (object) :
     __cv = 0
 
     def __init__ (self) :
-        self.__iv = 0
+        A.__cv    += 1
+        self.__iv  = 0
 #       cm()          # NameError: global name 'cm' is not defined
         A.cm()
         self.cm()
