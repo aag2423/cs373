@@ -28,6 +28,7 @@ print(x.v)
 
 x.v += [9]
 print(x.v)
+print()
 
 """
 I made a mistake writing this quiz. Below is the quiz I intended.
@@ -37,9 +38,16 @@ I made a mistake writing this quiz. Below is the quiz I intended.
  1. What is the output of the following?
     (4 pts)
 
+True
 [2, 3, 4]
+
+True
 [2, 3, 4, 5]
+
+False
 [2, 3, 4, 5]
+
+False
 [2, 3, 4, 5]
 """
 
@@ -47,13 +55,64 @@ class A :
     v = [2, 3, 4]
 
 x = A()
+print(A.v is x.v)
 print(A.v)
+print()
 
-x.v += [5]
+x.v += (5,)
+print(A.v is x.v)
 print(A.v)
+print()
 
 x.v = [6, 7, 8]
+print(A.v is x.v)
 print(A.v)
+print()
 
-x.v += [9]
+x.v += (9,)
+print(A.v is x.v)
+print(A.v)
+print()
+
+"""
+Notice the difference with tuple.
+"""
+
+""" ----------------------------------------------------------------------
+ 1. What is the output of the following?
+    (4 pts)
+
+True
+(2, 3, 4)
+
+False
+(2, 3, 4)
+
+False
+(2, 3, 4)
+
+False
+(2, 3, 4)
+"""
+
+class A :
+    v = (2, 3, 4)
+
+x = A()
+print(A.v is x.v)
+print(A.v)
+print()
+
+x.v += (5,)
+print(A.v is x.v)
+print(A.v)
+print()
+
+x.v = (6, 7, 8)
+print(A.v is x.v)
+print(A.v)
+print()
+
+x.v += (9,)
+print(A.v is x.v)
 print(A.v)
