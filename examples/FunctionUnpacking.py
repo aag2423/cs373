@@ -12,40 +12,43 @@ def f (x, y, z) :
     return [x, y, z]
 
 t = (3, 4)
-s = (2, 3, 4)
-assert(t          == (3, 4))
-assert(t          != (4, 3))
-assert(f(2, t, 5) == [2, (3, 4), 5])
-assert(f(2, 5, t) == [2, 5, (3, 4)])
-assert(f(2, *t)   == [2, 3, 4])
-assert(f(*s)      == [2, 3, 4])
-#f(*t, 2)                            # SyntaxError: invalid syntax
-#f(x = 2, *t)                        # f() got multiple values for argument 'x'
-#f(*t)                               # TypeError: f() takes exactly 3 arguments (2 given)
-#f(2, 5, *t)                         # TypeError: f() takes exactly 3 arguments (4 given)
-#f(5, *s)                            # TypeError: f() takes exactly 3 arguments (4 given)
+assert(t            == (3, 4))
+assert(t            != (4, 3))
+assert(f(2, t, 5)   == [2, (3, 4), 5])
+assert(f(2, 5, t)   == [2, 5, (3, 4)])
+assert(f(2, *t)     == [2, 3, 4])
+assert(f(z = 2, *t) == [3, 4, 2])
+assert(f(*t, z = 2) == [3, 4, 2])
+#f(*t, 2)                              # SyntaxError: invalid syntax
+#f(x = 2, *t)                          # f() got multiple values for argument 'x'
+#f(*t)                                 # TypeError: f() takes exactly 3 arguments (2 given)
+#f(2, 5, *t)                           # TypeError: f() takes exactly 3 arguments (4 given)
 
 l = [3, 4]
-assert(l          == [3, 4])
-assert(l          != [4, 3])
-assert(f(2, l, 5) == [2, [3, 4], 5])
-assert(f(2, 5, l) == [2, 5, [3, 4]])
-assert(f(2, *l)   == [2, 3, 4])
-#f(*l, 2)                            # SyntaxError: only named arguments may follow *expression
-#f(x = 2, *l)                        # f() got multiple values for argument 'x'
-#f(*l)                               # TypeError: f() takes exactly 3 arguments (2 given)
-#f(2, 5, *l)                         # TypeError: f() takes exactly 3 arguments (4 given)
+assert(l            == [3, 4])
+assert(l            != [4, 3])
+assert(f(2, l, 5)   == [2, [3, 4], 5])
+assert(f(2, 5, l)   == [2, 5, [3, 4]])
+assert(f(2, *l)     == [2, 3, 4])
+assert(f(z = 2, *l) == [3, 4, 2])
+assert(f(*l, z = 2) == [3, 4, 2])
+#f(*l, 2)                              # SyntaxError: only named arguments may follow *expression
+#f(x = 2, *l)                          # f() got multiple values for argument 'x'
+#f(*l)                                 # TypeError: f() takes exactly 3 arguments (2 given)
+#f(2, 5, *l)                           # TypeError: f() takes exactly 3 arguments (4 given)
 
 s = {3, 4}
-assert(s             == {3, 4})
-assert(s             == {3, 4})
-assert(f(2, s, 5)    == [2, {3, 4}, 5])
-assert(f(2, 5, s)    == [2, 5, {3, 4}])
-assert(set(f(2, *s)) == {2, 3, 4})
-#f(*s, 2)                               # SyntaxError: only named arguments may follow *expression
-#f(x = 2, *s)                           # f() got multiple values for argument 'x'
-#f(*s)                                  # TypeError: f() takes exactly 3 arguments (2 given)
-#f(2, 5, *s)                            # TypeError: f() takes exactly 3 arguments (4 given)
+assert(s                 == {3, 4})
+assert(s                 == {3, 4})
+assert(f(2, s, 5)        == [2, {3, 4}, 5])
+assert(f(2, 5, s)        == [2, 5, {3, 4}])
+assert(set(f(2, *s))     == {2, 3, 4})
+assert(set(f(z = 2, *s)) == {2, 3, 4})
+assert(set(f(*s, z = 2)) == {2, 3, 4})
+#f(*s, 2)                                   # SyntaxError: only named arguments may follow *expression
+#f(x = 2, *s)                               # f() got multiple values for argument 'x'
+#f(*s)                                      # TypeError: f() takes exactly 3 arguments (2 given)
+#f(2, 5, *s)                                # TypeError: f() takes exactly 3 arguments (4 given)
 
 d = {"b" : 4, "a" : 3}
 assert(type(d.keys()) is not collections.KeysView)
@@ -68,7 +71,12 @@ assert(set(f(2, *d.keys()))   == {2, 'a', 'b'})
 assert(set(f(2, *d.values())) == {2, 3, 4})
 assert(set(f(2, *d.items()))  == {2, ('a', 3), ('b', 4)})
 assert(set(f(2, *d))          == {2, 'a', 'b'})
+assert(set(f(z = 2, *d))      == {2, 'a', 'b'})
+assert(set(f(*d, z = 2))      == {2, 'a', 'b'})
+#f(*d, 2)                                                    # SyntaxError: only named arguments may follow *expression
 #f(x = 2, *d)                                                # f() got multiple values for argument 'x'
+#f(*d)                                                       # TypeError: f() missing 1 required positional argument: 'z'
+#f(2, 5, *d)                                                 # TypeError: f() takes 3 positional arguments but 4 were given
 #f(2, **d)                                                   # TypeError: f() got an unexpected keyword argument 'a'
 
 d = {"z" : 4, "y" : 3, "x" : 2}

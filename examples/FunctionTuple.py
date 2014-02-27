@@ -19,13 +19,14 @@ assert(f(2, 3, 4)    == [2, 3, (4,)])
 assert(f(2, 3, 4, 5) == [2, 3, (4, 5)])
 
 t = (3, 4)
-assert(t           == (3, 4))
-assert(t           != (4, 3))
-assert(f(2, t,  5) == [2, (3, 4), (5,)])
-assert(f(2, 5,  t) == [2, 5, ((3, 4),)])
-assert(f(2, 5, *t) == [2, 5, (3, 4)])
-assert(f(2, *t)    == [2, 3, (4,)])
+assert(t            == (3, 4))
+assert(t            != (4, 3))
+assert(f(2, t,  5)  == [2, (3, 4), (5,)])
+assert(f(2, 5,  t)  == [2, 5, ((3, 4),)])
+assert(f(2, 5, *t)  == [2, 5, (3, 4)])
+assert(f(2, *t)     == [2, 3, (4,)])
 #f(2, y = 5, *t)                         # TypeError: f() got multiple values for argument 'y'
+
 
 l = [3, 4]
 assert(l           == [3, 4])
