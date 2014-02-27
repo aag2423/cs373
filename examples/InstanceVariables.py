@@ -86,11 +86,19 @@ class B :
 x = B()
 y = B()
 
+assert(hasattr(B, "v"))
+assert(hasattr(x, "v"))
+assert(hasattr(y, "v"))
+
 assert("v"     in B.__dict__)
 assert("v" not in x.__dict__)
 assert("v" not in y.__dict__)
 
 B.v = [3]
+
+assert(hasattr(B, "v"))
+assert(hasattr(x, "v"))
+assert(hasattr(y, "v"))
 
 assert("v"     in B.__dict__)
 assert("v" not in x.__dict__)
@@ -99,6 +107,10 @@ assert("v" not in y.__dict__)
 assert(B.v is x.v is y.v)
 
 x.v = [4]
+
+assert(hasattr(B, "v"))
+assert(hasattr(x, "v"))
+assert(hasattr(y, "v"))
 
 assert("v"     in B.__dict__)
 assert("v"     in x.__dict__)
