@@ -19,10 +19,14 @@ assert(f(2, 3, a = 4, b = 5) == [2, 3, {'b' : 5, 'a' : 4}])
 #f(2, 3, [('b', 5), ('a', 4)]) # TypeError: f() takes exactly 2 arguments (3 given)
 
 d = {"b" : 4, "a" : 3}
-assert(d                == {'b' : 4, 'a' : 3})
-assert(d                == {'a' : 3, 'b' : 4})
-assert(f(2, 5,     **d) == [2, 5, {'a' : 3, 'b' : 4}])
-assert(f(2, y = 5, **d) == [2, 5, {'a' : 3, 'b' : 4}])
+u = (2,)
+assert(d                 == {'b' : 4, 'a' : 3})
+assert(d                 == {'a' : 3, 'b' : 4})
+assert(f(2, 5,     **d)  == [2, 5, {'a' : 3, 'b' : 4}])
+assert(f(2, y = 5, **d)  == [2, 5, {'a' : 3, 'b' : 4}])
+assert(f(y = 5, *u, **d) == [2, 5, {'a' : 3, 'b' : 4}])
+assert(f(*u, y = 5, **d) == [2, 5, {'a' : 3, 'b' : 4}])
+#f(2, **d, y = 5)                                       # SyntaxError: invalid syntax
 
 d = {"y" : 3, "x" : 2}
 #f(2, **d)                   # TypeError: f() got multiple values for keyword argument 'x'
