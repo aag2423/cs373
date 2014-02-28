@@ -123,6 +123,12 @@ assert(x       == [2,   3,  4,  5,  6])
 assert(y       == [10, 15, 20, 25, 30])
 
 x = [2, 3, 4, 5, 6]
+y = map(lambda v : v * 5, x)            # map
+assert(type(y) is map)
+assert(x       == [2,   3,  4,  5,  6])
+assert(list(y) == [10, 15, 20, 25, 30])
+
+x = [2, 3, 4, 5, 6]
 y = (v * 5 for v in x)                  # generator
 assert(type(y) is types.GeneratorType)
 assert(x       == [2,   3,  4,  5,  6])
@@ -140,6 +146,13 @@ x = [2, 3, 4, 5, 6]
 y = [v * 5 for v in x if v % 2]
 assert(x == [2, 3, 4, 5, 6])
 assert(y == [15, 25])
+
+x = [2, 3, 4, 5, 6]
+y = filter(lambda v : v % 2, x)
+assert(type(y) is filter)
+z = map(lambda v : v * 5, y)
+assert(x       == [2, 3, 4, 5, 6])
+assert(list(z) == [15, 25])
 
 x = [2, 3, 4, 5, 6]
 y = (v * 5 for v in x if v % 2)
