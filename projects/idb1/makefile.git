@@ -4,7 +4,9 @@ config:
 	git config -l
 
 count:
-	ls -al | grep "\.apib" | wc -l
+	ls -al | grep "apiary.apib" | wc -l
+	ls -al | grep "tests.py"    | wc -l
+	ls -al | grep "tests.out"   | wc -l
 
 log:
 	git log
