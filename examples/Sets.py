@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # -------
 # Sets.py
@@ -77,7 +77,7 @@ assert(s == set([2, 3.45]))
 try :
     s.remove("abc")
     assert(False)
-except KeyError, e:
+except KeyError as e:
     assert(type(e.args) is tuple)
     assert(len(e.args)  == 1)
     assert(e.args       == ("abc",))
@@ -108,11 +108,11 @@ assert(False is not 0)
 assert(False ==     0)
 assert(True  is not 1)
 assert(True  ==     1)
-assert(2     is not 2L)
-assert(2     ==     2L)
-s = set((False, 0, True, 1, 2, 2L))
+assert(2     is not 2.0)
+assert(2     ==     2.0)
+s = set((False, 0, True, 1, 2, 2.0))
 assert(s == set((False, True, 2)))
-assert(s == set((0, 1, 2L)))
+assert(s == set((0, 1, 2)))
 
 class A :
     pass

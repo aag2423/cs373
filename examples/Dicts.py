@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # --------
 # Dicts.py
@@ -34,7 +34,7 @@ d = {}
 try :
     assert(d[2] == None)
     assert(False)
-except KeyError, e:
+except KeyError as e:
     assert(type(e.args) is tuple)
     assert(len(e.args)  == 1)
     assert(e.args       == (2,))
@@ -49,15 +49,15 @@ assert(d == {2 : "def", 3.45 : 3})
 try :
     d.pop("abc")
     assert(False)
-except KeyError, e:
+except KeyError as e:
     assert(type(e.args) is tuple)
     assert(len(e.args)  == 1)
     assert(e.args       == ("abc",))
 
 d = {2 : "abc", 3 : "def", 4 : "ghi"}
-assert(d.keys()   == [2, 3, 4])
-assert(d.values() == ["abc", "def", "ghi"])
-assert(d.items()  == [(2, "abc"), (3, "def"), (4, "ghi")])
+assert(set(d.keys())   == {2, 3, 4})
+assert(set(d.values()) == {"abc", "def", "ghi"})
+assert(set(d.items())  == {(2, "abc"), (3, "def"), (4, "ghi")})
 
 d = {2 : "abc", 3 : "def", 4 : "ghi"}
 assert(3     in d)
@@ -75,14 +75,12 @@ assert(d ==     e)
 t = ("a", "b", "c")
 u = (2, 3, 4)
 z = zip(t, u)
-assert(z == [('a', 2), ('b', 3), ('c', 4)])
 d = dict(z)
 assert(d == {'a' : 2, 'b' : 3, 'c' : 4})
 
 t = ("a", "b", "c")
 u = (2, 3)
 z = zip(t, u)
-assert(z == [('a', 2), ('b', 3)])
 d = dict(z)
 assert(d == {'a' : 2, 'b' : 3})
 
@@ -90,18 +88,17 @@ t = ("a", "b", "c")
 u = (2, 3, 4)
 v = (5, 6)
 z = zip(t, u, v)
-assert(z == [('a', 2, 5), ('b', 3, 6)])
-#d = dict(z)                            # ValueError: dictionary update sequence element #0 has length 3; 2 is required
+#d = dict(z)     # ValueError: dictionary update sequence element #0 has length 3; 2 is required
 
 assert(False is not 0)
 assert(False ==     0)
 assert(True  is not 1)
 assert(True  ==     1)
-assert(2     is not 2L)
-assert(2     ==     2L)
-d = {False : "abc", 0 : "def", True : "ghi", 1 : "jkl", 2 : "mno", 2L : "pqr"}
+assert(2     is not 2.0)
+assert(2     ==     2.0)
+d = {False : "abc", 0 : "def", True : "ghi", 1 : "jkl", 2 : "mno", 2.0 : "pqr"}
 assert(d == {False : 'def', True : 'jkl', 2  : 'pqr'})
-assert(d == {0     : 'def', 1    : 'jkl', 2L : 'pqr'})
+assert(d == {0     : 'def', 1    : 'jkl', 2.0 : 'pqr'})
 
 d  = {"abc"             : "abc", "def"             : "def"}
 d  = {(2, 3)            : "abc", (4, 5)            : "def"}
