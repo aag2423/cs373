@@ -6,7 +6,7 @@
 
 print("Inheritance.py")
 
-class Shape (object) :
+class Shape :
     def __init__ (self, x, y) :
         super(Shape, self).__init__()
 #       object.__init__(self)
