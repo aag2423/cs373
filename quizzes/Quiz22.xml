@@ -1,0 +1,41 @@
+CS373: Quiz #22 (5 pts) <Jake>
+
+--------------------------------------------------------------------------
+ 1. Which of the following choices COULD be the info element spec in a
+    DTD for the following XML?
+    (2 pts)
+
+c.
+--
+
+<info>
+    <addr>101 Maple St.</addr>
+    <phone>555-1212</phone>
+    <phone>555-4567</phone>
+</info>
+
+a. <!ELEMENT info (addr, phone?)>
+b. <!ELEMENT info (addr, phone)>
+c. <!ELEMENT info (addr?, phone+)>
+d. <!ELEMENT info (name+, addr, phone*)>
+
+--------------------------------------------------------------------------
+ 2. Which of the following choices COULD NOT be the info element spec in a
+    DTD for the following XML?
+    Note that there can be multiple ATTLIST declarations for a single
+    ELEMENT; do not assume the only attributes allowed for an ELEMENT are
+    the ones shown in the answer choice.
+    (2 pts)
+
+c.
+--
+
+<emp name = "Kermit">
+    <addr>123 Sesame St.</addr>
+    <phone type = "cell">555-1212</phone>
+</emp>
+
+a. <!ATTLIST emp ssNo ID #IMPLIED>
+b. <!ATTLIST phone owner IDREF #IMPLIED>
+c. <!ATTLIST phone owner IDREF #REQUIRED>
+d. <!ATTLIST phone type CDATA #REQUIRED>
