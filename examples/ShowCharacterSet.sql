@@ -1,5 +1,5 @@
 /* -----------------------------------------------------------------------
-Show
+Show Character Set
 */
 
 select "Show Character Set";

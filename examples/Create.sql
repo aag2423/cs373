@@ -99,9 +99,17 @@ Select
 
 select "Select";
 
-select * from Student;
-select * from Apply;
-select * from College;
+select *
+    from Student
+    order by sID;
+
+select *
+    from Apply
+    order by sID;
+
+select *
+    from College
+    order by cName;
 
 /* -----------------------------------------------------------------------
 Drop

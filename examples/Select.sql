@@ -83,6 +83,24 @@ insert into College values ('MIT',      'MA', 10000);
 insert into College values ('Stanford', 'CA', 15000);
 
 /* -----------------------------------------------------------------------
+Select
+*/
+
+select "Select";
+
+select *
+    from Student
+    order by sID;
+
+select *
+    from Apply
+    order by sID;
+
+select *
+    from College
+    order by cName;
+
+/* -----------------------------------------------------------------------
 students with GPA > 3.7
 
 select[GPA > 3.7]

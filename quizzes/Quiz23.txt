@@ -1,0 +1,16 @@
+--
+CS373: Quiz #23 (5 pts) <Prateek>
+--
+
+--------------------------------------------------------------------------
+ 1. Define "Afferent Couplings".
+    Define "Efferent Couplings".
+    [Stability]
+    (4 pts)
+--
+
+"The number of classes outside this package that depend upon classes
+within this package."
+
+"The number of classes inside this package that depend upon classes
+outside this package."
