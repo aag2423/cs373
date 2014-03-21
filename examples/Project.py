@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # ----------
 # Project.py
@@ -11,7 +11,8 @@ def project_1 (r, a) :
     for v in r :
         y = {}
         for w in a :
-            y[w] = v[w]
+            if w in v :
+                y[w] = v[w]
         x.append(y)
     return x
 
