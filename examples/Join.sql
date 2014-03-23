@@ -9,6 +9,7 @@ http://www.sitepoint.com/using-explain-to-write-better-mysql-queries/
 Drop
 */
 
+select "";
 select "Drop";
 
 drop table if exists Student;
@@ -38,18 +39,6 @@ create table College (
     cName      text,
     state      char(2),
     enrollment int);
-
-/* -----------------------------------------------------------------------
-Show
-*/
-
-select "";
-select "Show";
-
-show tables;
-show columns from Student;
-show columns from Apply;
-show columns from College;
 
 /* -----------------------------------------------------------------------
 Insert
@@ -116,6 +105,146 @@ explain select * from Apply;
 
 explain select * from College;
         select * from College;
+
+/* -----------------------------------------------------------------------
+Student cross join Apply
+*/
+
+select "";
+select "Cross Join";
+
+# select *
+#     from Student, Apply
+#     order by Student.sID;
+
+explain select *
+    from Student cross join Apply
+    order by Student.sID;
+
+select *
+    from Student cross join Apply
+    order by Student.sID;
+
+/* -----------------------------------------------------------------------
+Student theta join[Student.sID = Apply.sID] Apply
+*/
+
+select "";
+select "Theta Join";
+
+# select *
+#     from Student
+#     inner join Apply
+#     where Student.sID = Apply.sID;
+
+# select *
+#     from Student
+#     inner join Apply on Student.sID = Apply.sID;
+
+explain select *
+    from Student
+    inner join Apply using (sID);
+
+select *
+    from Student
+    inner join Apply using (sID);
+
+/* -----------------------------------------------------------------------
+Student natural join Apply
+*/
+
+select "";
+select "Natural Join";
+
+explain select *
+    from Student natural join Apply;
+
+select *
+    from Student natural join Apply;
+
+/* -----------------------------------------------------------------------
+name and GPA of students
+   with high school size > 1000,
+   with major            = CS,
+   with decision         = false
+
+project[sName, GPA]
+    (select[(sizeHS > 1000)     and
+            (major = 'CS')      and
+            (decision = false)]
+        (Student join Apply))
+*/
+
+explain select *
+    from Student
+    inner join Apply using (sID)
+    where (sizeHS > 1000) and (major = 'CS') and (decision = false);
+
+select *
+    from Student
+    inner join Apply using (sID)
+    where (sizeHS > 1000) and (major = 'CS') and (decision = false);
+
+explain select sName, GPA
+    from Student
+    inner join Apply using (sID)
+    where (sizeHS > 1000) and (major = 'CS') and (decision = false);
+
+select sName, GPA
+    from Student
+    inner join Apply using (sID)
+    where (sizeHS > 1000) and (major = 'CS') and (decision = false);
+
+/* -----------------------------------------------------------------------
+name and GPA of students with
+   with high school size > 500,
+   with major            = CS,
+   with decision         = false,
+   with enrollment       > 20000
+
+project[sName, GPA]
+    (select[(sizeHS > 500)       and
+           (major = 'CS')        and
+           (decision = false)    and
+           (enrollment > 20000)]
+        (Student join Apply join College))
+*/
+
+explain select *
+    from Student
+        inner join Apply   using (sID)
+        inner join College using (cName)
+    where (sizeHS     > 500)   and
+          (major      = 'CS')  and
+          (decision   = true)  and
+          (enrollment > 20000);
+
+select *
+    from Student
+        inner join Apply   using (sID)
+        inner join College using (cName)
+    where (sizeHS     > 500)   and
+          (major      = 'CS')  and
+          (decision   = true)  and
+          (enrollment > 20000);
+
+explain select sName, GPA
+    from Student
+        inner join Apply   using (sID)
+        inner join College using (cName)
+    where (sizeHS     > 500)   and
+          (major      = 'CS')  and
+          (decision   = true)  and
+          (enrollment > 20000);
+
+select sName, GPA
+    from Student
+        inner join Apply   using (sID)
+        inner join College using (cName)
+    where (sizeHS     > 500)   and
+          (major      = 'CS')  and
+          (decision   = true)  and
+          (enrollment > 20000);
 
 /* -----------------------------------------------------------------------
 Drop

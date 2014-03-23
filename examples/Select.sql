@@ -1,9 +1,15 @@
 use downing_test;
 
 /* -----------------------------------------------------------------------
+Explain
+http://www.sitepoint.com/using-explain-to-write-better-mysql-queries/
+*/
+
+/* -----------------------------------------------------------------------
 Drop
 */
 
+select "";
 select "Drop";
 
 drop table if exists Student;
@@ -14,6 +20,7 @@ drop table if exists College;
 Create
 */
 
+select "";
 select "Create";
 
 create table Student (
@@ -37,6 +44,7 @@ create table College (
 Insert
 */
 
+select "";
 select "Insert";
 
 insert into Student values (123, 'Amy',    3.9,  1000);
@@ -86,19 +94,17 @@ insert into College values ('Stanford', 'CA', 15000);
 Select
 */
 
+select "";
 select "Select";
 
-select *
-    from Student
-    order by sID;
+explain select * from Student;
+        select * from Student;
 
-select *
-    from Apply
-    order by sID;
+explain select * from Apply;
+        select * from Apply;
 
-select *
-    from College
-    order by cName;
+explain select * from College;
+        select * from College;
 
 /* -----------------------------------------------------------------------
 students with GPA > 3.7
@@ -107,7 +113,12 @@ select[GPA > 3.7]
    (Student)
 */
 
+select "";
 select "Select";
+
+explain select *
+    from Student
+    where (GPA > 3.7);
 
 select *
     from Student
@@ -120,6 +131,10 @@ select[(GPA > 3.7) and (sizeHS < 1000)]
    (Student)
 */
 
+explain select *
+    from Student
+    where (GPA > 3.7) and (sizeHS < 1000);
+
 select *
     from Student
     where (GPA > 3.7) and (sizeHS < 1000);
@@ -130,6 +145,10 @@ applications to Stanford and major = CS
 select[(cName = 'Stanford') and (major = 'CS']
    (Apply)
 */
+
+explain select *
+    from Apply
+    where (cName = 'Stanford') and (major = 'CS');
 
 select *
     from Apply
@@ -142,7 +161,11 @@ project[sID, decision]
    (Apply)
 */
 
+select "";
 select "Project";
+
+explain select sID, decision
+    from Apply;
 
 select sID, decision
     from Apply;
@@ -155,7 +178,12 @@ project[sID, sName]
        (Student))
 */
 
+select "";
 select "Select and Project";
+
+explain select sID, sName
+    from Student
+    where (GPA > 3.7);
 
 select sID, sName
     from Student
@@ -168,18 +196,30 @@ project[major, decision]
    (Apply)
 */
 
+select "";
 select "Distinct";
 
+explain select major, decision
+    from Apply
+    order by major;
+
 select major, decision
-    from Apply;
+    from Apply
+    order by major;
+
+explain select distinct major, decision
+    from Apply
+    order by major;
 
 select distinct major, decision
-    from Apply;
+    from Apply
+    order by major;
 
 /* -----------------------------------------------------------------------
 Drop
 */
 
+select "";
 select "Drop";
 
 drop table if exists Student;
