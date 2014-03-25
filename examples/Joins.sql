@@ -50,14 +50,14 @@ select "Cross Join";
 select * from R;
 select * from S;
 
-select count(*) from R, S;
-select       *  from R, S;
+# select count(*) from R, S;
+# select       *  from R, S;
 
 select count(*) from R cross join S;
 select       *  from R cross join S;
 
-select count(*) from R inner join S;
-select       *  from R inner join S;
+# select count(*) from R inner join S;
+# select       *  from R inner join S;
 
 /* -----------------------------------------------------------------------
 Theta Join
@@ -68,20 +68,20 @@ select "Theta Join";
 select * from R;
 select * from S;
 
-select count(*) from R, S where R.A = S.B;
-select       *  from R, S where R.A = S.B;
+# select count(*) from R, S where R.A = S.B;
+# select       *  from R, S where R.A = S.B;
 
-select count(*) from R cross join S where R.A = S.B;
-select       *  from R cross join S where R.A = S.B;
+# select count(*) from R cross join S where R.A = S.B;
+# select       *  from R cross join S where R.A = S.B;
 
-select count(*) from R inner join S where R.A = S.B;
-select       *  from R inner join S where R.A = S.B;
+# select count(*) from R inner join S where R.A = S.B;
+# select       *  from R inner join S where R.A = S.B;
 
 # select count(*) from R, S on R.A = S.B; # You have an error in your SQL syntax
 # select       *  from R, S on R.A = S.B; # You have an error in your SQL syntax
 
-select count(*) from R cross join S on R.A = S.B;
-select       *  from R cross join S on R.A = S.B;
+# select count(*) from R cross join S on R.A = S.B;
+# select       *  from R cross join S on R.A = S.B;
 
 select count(*) from R inner join S on R.A = S.B;
 select       *  from R inner join S on R.A = S.B;
@@ -179,14 +179,14 @@ select "Cross Join";
 select * from R;
 select * from S;
 
-select count(*) from R, S;
-select       *  from R, S;
+# select count(*) from R, S;
+# select       *  from R, S;
 
 select count(*) from R cross join S;
 select       *  from R cross join S;
 
-select count(*) from R inner join S;
-select       *  from R inner join S;
+# select count(*) from R inner join S;
+# select       *  from R inner join S;
 
 /* -----------------------------------------------------------------------
 Theta Join
@@ -197,29 +197,29 @@ select "Theta Join";
 select * from R;
 select * from S;
 
-select count(*) from R, S where R.A = S.A;
-select       *  from R, S where R.A = S.A;
+# select count(*) from R, S where R.A = S.A;
+# select       *  from R, S where R.A = S.A;
 
-select count(*) from R cross join S where R.A = S.A;
-select       *  from R cross join S where R.A = S.A;
+# select count(*) from R cross join S where R.A = S.A;
+# select       *  from R cross join S where R.A = S.A;
 
-select count(*) from R inner join S where R.A = S.A;
-select       *  from R inner join S where R.A = S.A;
+# select count(*) from R inner join S where R.A = S.A;
+# select       *  from R inner join S where R.A = S.A;
 
 # select count(*) from R, S on R.A = S.A; # You have an error in your SQL syntax
 # select       *  from R, S on R.A = S.A; # You have an error in your SQL syntax
 
-select count(*) from R cross join S on R.A = S.A;
-select       *  from R cross join S on R.A = S.A;
+# select count(*) from R cross join S on R.A = S.A;
+# select       *  from R cross join S on R.A = S.A;
 
-select count(*) from R inner join S on R.A = S.A;
-select       *  from R inner join S on R.A = S.A;
+# select count(*) from R inner join S on R.A = S.A;
+# select       *  from R inner join S on R.A = S.A;
 
 # select count(*) from R, S using (A); # You have an error in your SQL syntax
 # select       *  from R, S using (A); # You have an error in your SQL syntax
 
-select count(*) from R cross join S using (A);
-select       *  from R cross join S using (A);
+# select count(*) from R cross join S using (A);
+# select       *  from R cross join S using (A);
 
 select count(*) from R inner join S using (A);
 select       *  from R inner join S using (A);
@@ -323,14 +323,14 @@ select "Cross Join";
 select * from R;
 select * from S;
 
-select count(*) from R, S;
-select       *  from R, S;
+# select count(*) from R, S;
+# select       *  from R, S;
 
 select count(*) from R cross join S;
 select       *  from R cross join S;
 
-select count(*) from R inner join S;
-select       *  from R inner join S;
+# select count(*) from R inner join S;
+# select       *  from R inner join S;
 
 /* -----------------------------------------------------------------------
 Theta Join
@@ -341,29 +341,29 @@ select "Theta Join";
 select * from R;
 select * from S;
 
-select count(*) from R, S where R.A = S.A;
-select       *  from R, S where R.A = S.A;
+# select count(*) from R, S where R.A = S.A;
+# select       *  from R, S where R.A = S.A;
 
-select count(*) from R cross join S where R.A = S.A;
-select       *  from R cross join S where R.A = S.A;
+# select count(*) from R cross join S where R.A = S.A;
+# select       *  from R cross join S where R.A = S.A;
 
-select count(*) from R inner join S where R.A = S.A;
-select       *  from R inner join S where R.A = S.A;
+# select count(*) from R inner join S where R.A = S.A;
+# select       *  from R inner join S where R.A = S.A;
 
 # select count(*) from R, S on R.A = S.A; # You have an error in your SQL syntax
 # select       *  from R, S on R.A = S.A; # You have an error in your SQL syntax
 
-select count(*) from R cross join S on R.A = S.A;
-select       *  from R cross join S on R.A = S.A;
+# select count(*) from R cross join S on R.A = S.A;
+# select       *  from R cross join S on R.A = S.A;
 
-select count(*) from R inner join S on R.A = S.A;
-select       *  from R inner join S on R.A = S.A;
+# select count(*) from R inner join S on R.A = S.A;
+# select       *  from R inner join S on R.A = S.A;
 
 # select count(*) from R, S using (A); # You have an error in your SQL syntax
 # select       *  from R, S using (A); # You have an error in your SQL syntax
 
-select count(*) from R cross join S using (A);
-select       *  from R cross join S using (A);
+# select count(*) from R cross join S using (A);
+# select       *  from R cross join S using (A);
 
 select count(*) from R inner join S using (A);
 select       *  from R inner join S using (A);
@@ -461,14 +461,14 @@ select "";
 select "Cross Join";
 select * from T;
 
-select count(*) from T as R, T as S;
-select       *  from T as R, T as S;
+# select count(*) from T as R, T as S;
+# select       *  from T as R, T as S;
 
 select count(*) from T as R cross join T as S;
 select       *  from T as R cross join T as S;
 
-select count(*) from T as R inner join T as S;
-select       *  from T as R inner join T as S;
+# select count(*) from T as R inner join T as S;
+# select       *  from T as R inner join T as S;
 
 /* -----------------------------------------------------------------------
 Theta Join
@@ -478,29 +478,29 @@ select "";
 select "Theta Join";
 select * from T;
 
-select count(*) from T as R, T as S where R.A = S.A;
-select       *  from T as R, T as S where R.A = S.A;
+# select count(*) from T as R, T as S where R.A = S.A;
+# select       *  from T as R, T as S where R.A = S.A;
 
-select count(*) from T as R cross join T as S where R.A = S.A;
-select       *  from T as R cross join T as S where R.A = S.A;
+# select count(*) from T as R cross join T as S where R.A = S.A;
+# select       *  from T as R cross join T as S where R.A = S.A;
 
-select count(*) from T as R inner join T as S where R.A = S.A;
-select       *  from T as R inner join T as S where R.A = S.A;
+# select count(*) from T as R inner join T as S where R.A = S.A;
+# select       *  from T as R inner join T as S where R.A = S.A;
 
 # select count(*) from T as R, T as S on R.A = S.A; # You have an error in your SQL syntax
 # select       *  from T as R, T as S on R.A = S.A; # You have an error in your SQL syntax
 
-select count(*) from T as R cross join T as S on R.A = S.A;
-select       *  from T as R cross join T as S on R.A = S.A;
+# select count(*) from T as R cross join T as S on R.A = S.A;
+# select       *  from T as R cross join T as S on R.A = S.A;
 
-select count(*) from T as R inner join T as S on R.A = S.A;
-select       *  from T as R inner join T as S on R.A = S.A;
+# select count(*) from T as R inner join T as S on R.A = S.A;
+# select       *  from T as R inner join T as S on R.A = S.A;
 
 # select count(*) from T as R, T as S using (A); # You have an error in your SQL syntax
 # select       *  from T as R, T as S using (A); # You have an error in your SQL syntax
 
-select count(*) from T as R cross join T as S using (A);
-select       *  from T as R cross join T as S using (A);
+# select count(*) from T as R cross join T as S using (A);
+# select       *  from T as R cross join T as S using (A);
 
 select count(*) from T as R inner join T as S using (A);
 select       *  from T as R inner join T as S using (A);
