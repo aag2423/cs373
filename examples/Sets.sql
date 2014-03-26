@@ -149,6 +149,20 @@ select "using inner join";
 
 explain select *
     from
+        (select sName from Student) as R
+        inner join
+        (select cName from College) as S
+        on (R.sName = S.cName);
+
+select *
+    from
+        (select sName from Student) as R
+        inner join
+        (select cName from College) as S
+        on (R.sName = S.cName);
+
+explain select *
+    from
         (select sName as csName from Student) as R
         inner join
         (select cName as csName from College) as S
