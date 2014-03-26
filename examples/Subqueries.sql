@@ -210,22 +210,26 @@ select "this is right, using subquery, with in";
 
 explain select *
     from Student
-    where sID in (select distinct sID from Apply where major = 'CS')
+    where sID in
+        (select distinct sID from Apply where major = 'CS')
     order by GPA desc;
 
 select *
     from Student
-    where sID in (select distinct sID from Apply where major = 'CS')
+    where sID in
+        (select distinct sID from Apply where major = 'CS')
     order by GPA desc;
 
 explain select GPA
     from Student
-    where sID in (select distinct sID from Apply where major = 'CS')
+    where sID in
+        (select distinct sID from Apply where major = 'CS')
     order by GPA desc;
 
 select GPA
     from Student
-    where sID in (select distinct sID from Apply where major = 'CS')
+    where sID in
+        (select distinct sID from Apply where major = 'CS')
     order by GPA desc;
 
 /* -----------------------------------------------------------------------
