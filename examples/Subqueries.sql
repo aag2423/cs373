@@ -152,12 +152,16 @@ select "this is also right, using subquery, with in";
 explain select sID, sName, GPA
     from Student
     where sID in
-        (select distinct sID from Apply where major = 'CS');
+        (select distinct sID
+            from Apply
+            where major = 'CS');
 
 select sID, sName, GPA
     from Student
     where sID in
-        (select distinct sID from Apply where major = 'CS');
+        (select distinct sID
+            from Apply
+            where major = 'CS');
 
 /* -----------------------------------------------------------------------
 GPA of students who applied in CS
@@ -208,28 +212,20 @@ select distinct GPA
 
 select "this is right, using subquery, with in";
 
-explain select *
-    from Student
-    where sID in
-        (select distinct sID from Apply where major = 'CS')
-    order by GPA desc;
-
-select *
-    from Student
-    where sID in
-        (select distinct sID from Apply where major = 'CS')
-    order by GPA desc;
-
 explain select GPA
     from Student
     where sID in
-        (select distinct sID from Apply where major = 'CS')
+        (select sID
+            from Apply
+            where major = 'CS')
     order by GPA desc;
 
 select GPA
     from Student
     where sID in
-        (select distinct sID from Apply where major = 'CS')
+        (select sID
+            from Apply
+            where major = 'CS')
     order by GPA desc;
 
 /* -----------------------------------------------------------------------
@@ -245,13 +241,15 @@ explain select *
     from Apply as R
     inner join Apply as S using (sID)
     where R.major  = 'CS'  and
-          S.major != 'EE';
+          S.major != 'EE'
+    order by R.sID, R.cName;
 
 select *
     from Apply as R
     inner join Apply as S using (sID)
     where R.major  = 'CS'  and
-          S.major != 'EE';
+          S.major != 'EE'
+    order by R.sID, R.cName;
 
 explain select distinct R.sID
     from Apply as R
@@ -296,26 +294,16 @@ colleges, such that there's another college in the same state
 select "";
 select "colleges, such that there's another college in the same state";
 
-explain select *
-    from College as R inner join College as S
-    where (R.cName != S.cName) and
-          (R.state =  S.state)
-    order by R.cName;
-
-select *
-    from College as R inner join College as S
-    where (R.cName != S.cName) and
-          (R.state =  S.state)
-    order by R.cName;
-
 explain select R.cName, R.state
-    from College as R inner join College as S
+    from College as R
+    inner join College as S
     where (R.cName != S.cName) and
           (R.state =  S.state)
     order by R.cName;
 
 select R.cName, R.state
-    from College as R inner join College as S
+    from College as R
+    inner join College as S
     where (R.cName != S.cName) and
           (R.state =  S.state)
     order by R.cName;
@@ -367,15 +355,13 @@ explain select cName, enrollment
     from College
     where enrollment >= all
         (select enrollment
-            from College
-            where enrollment is not null);
+            from College);
 
 select cName, enrollment
     from College
     where enrollment >= all
         (select enrollment
-            from College
-            where enrollment is not null);
+            from College);
 
 /* -----------------------------------------------------------------------
 students with highest GPA
