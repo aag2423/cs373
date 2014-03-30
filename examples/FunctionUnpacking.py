@@ -39,7 +39,7 @@ assert(f(*l, z = 2) == [3, 4, 2])
 
 s = {3, 4}
 assert(s                 == {3, 4})
-assert(s                 == {3, 4})
+assert(s                 == {4, 3})
 assert(f(2, s, 5)        == [2, {3, 4}, 5])
 assert(f(2, 5, s)        == [2, 5, {3, 4}])
 assert(set(f(2, *s))     == {2, 3, 4})
@@ -87,6 +87,7 @@ d = {"z" : 4, "y" : 3}
 assert(set(f(2,     **d)) == {2, 3, 4})
 assert(set(f(x = 2, **d)) == {2, 3, 4})
 #f(**d, 2)                              # SyntaxError: invalid syntax
+#f(**d, x = 2)                          # SyntaxError: invalid syntax
 #f(**d)                                 # TypeError: f() takes exactly 3 arguments (2 given)
 #f(2, 5, **d)                           # TypeError: f() got multiple values for keyword argument 'y'
 
@@ -98,5 +99,10 @@ d = {"z" : 4, "y" : 3, "t" : 5}
 #f(2,     **d)                  # TypeError: f() got an unexpected keyword argument 't'
 #f(x = 2, **d)                  # TypeError: f() got an unexpected keyword argument 't'
 #f(**d)                         # TypeError: f() got an unexpected keyword argument 't'
+
+t = (2, 3)
+d = {"z" : 4}
+assert(f(*t, **d) == [2, 3, 4])
+#f(**d, *t)                     # SyntaxError: invalid syntax
 
 print("Done.")
