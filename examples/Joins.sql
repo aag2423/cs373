@@ -431,6 +431,137 @@ select "Drop";
 
 drop table if exists R;
 drop table if exists S;
+
+/* -----------------------------------------------------------------------
+Create
+*/
+
+select "";
+select "Create";
+
+create table R (A int, B int);
+create table S (A int, B int, C int);
+
+/* -----------------------------------------------------------------------
+Insert
+*/
+
+select "";
+select "Insert";
+
+insert into R values (1, 4);
+insert into R values (2, 5);
+insert into R values (3, 6);
+
+insert into S values (1, 3, 4);
+insert into S values (1, 4, 5);
+insert into S values (1, 4, 6);
+insert into S values (2, 4, 7);
+insert into S values (2, 5, 8);
+insert into S values (3, 7, 9);
+
+/* -----------------------------------------------------------------------
+Cross Join
+*/
+
+select "";
+select "Cross Join";
+select * from R;
+select * from S;
+
+# select count(*) from R, S;
+# select       *  from R, S;
+
+select count(*) from R cross join S;
+select       *  from R cross join S;
+
+# select count(*) from R inner join S;
+# select       *  from R inner join S;
+
+/* -----------------------------------------------------------------------
+Theta Join
+*/
+
+select "";
+select "Theta Join";
+select * from R;
+select * from S;
+
+# select count(*) from R, S where R.A = S.A and R.B = S.B;
+# select       *  from R, S where R.A = S.A and R.B = S.B;
+
+# select count(*) from R cross join S where R.A = S.A and R.B = S.B;
+# select       *  from R cross join S where R.A = S.A and R.B = S.B;
+
+# select count(*) from R inner join S where R.A = S.A and R.B = S.B;
+# select       *  from R inner join S where R.A = S.A and R.B = S.B;
+
+# select count(*) from R, S on R.A = S.A and R.B = S.B; # You have an error in your SQL syntax
+# select       *  from R, S on R.A = S.A and R.B = S.B; # You have an error in your SQL syntax
+
+# select count(*) from R cross join S on R.A = S.A and R.B = S.B;
+# select       *  from R cross join S on R.A = S.A and R.B = S.B;
+
+select count(*) from R inner join S on R.A = S.A and R.B = S.B;
+select       *  from R inner join S on R.A = S.A and R.B = S.B;
+
+/* -----------------------------------------------------------------------
+Left Join
+*/
+
+select "";
+select "Left Join";
+select * from R;
+select * from S;
+
+# select count(*) from R left join S; # You have an error in your SQL syntax
+# select       *  from R left join S; # You have an error in your SQL syntax
+
+# select count(*) from R left join S where R.A = S.A and R.B = S.B; # You have an error in your SQL syntax
+# select       *  from R left join S where R.A = S.A and R.B = S.B; # You have an error in your SQL syntax
+
+select count(*) from R left join S on R.A = S.A and R.B = S.B;
+select       *  from R left join S on R.A = S.A and R.B = S.B;
+
+/* -----------------------------------------------------------------------
+Right Join
+*/
+
+select "";
+select "Right Join";
+select * from R;
+select * from S;
+
+# select count(*) from R right join S; # You have an error in your SQL syntax
+# select       *  from R right join S; # You have an error in your SQL syntax
+
+# select count(*) from R right join S where R.A = S.A and R.B = S.B; # You have an error in your SQL syntax
+# select       *  from R right join S where R.A = S.A and R.B = S.B; # You have an error in your SQL syntax
+
+select count(*) from R right join S on R.A = S.A and R.B = S.B;
+select       *  from R right join S on R.A = S.A and R.B = S.B;
+
+/* -----------------------------------------------------------------------
+Natural Join
+*/
+
+select "";
+select "Natural Join";
+select * from R;
+select * from S;
+
+select count(*) from R natural join S;
+select       *  from R natural join S;
+
+/* -----------------------------------------------------------------------
+Drop
+*/
+
+select "";
+select "Drop";
+
+drop table if exists R;
+drop table if exists S;
 drop table if exists T;
 
 /* -----------------------------------------------------------------------
