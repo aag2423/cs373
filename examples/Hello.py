@@ -31,6 +31,16 @@ Nothing to be done.
 
 
 
+% coverage run --branch Hello.py
+Nothing to be done.
+coverage report
+Name    Stmts   Miss Branch BrMiss  Cover
+-----------------------------------------
+Hello       2      0      0      0   100%
+%
+
+
+
 % python3
 Python 3.2.3 (default, Sep 25 2013, 18:22:43)
 [GCC 4.6.3] on linux2
@@ -127,7 +137,7 @@ has the same effect as typing a particular string at the help> prompt.
 
 
 
-% python
+% python3
 Python 3.2.3 (default, Sep 25 2013, 18:22:43)
 [GCC 4.6.3] on linux2
 Type "help", "copyright", "credits" or "license" for more information.
@@ -156,5 +166,26 @@ If the implementation is easy to explain, it may be a good idea.
 Namespaces are one honking great idea -- let's do more of those!
 
 >>> quit()
-%
+
+
+
+% coverage help
+Coverage.py, version 3.7.1
+Measure, collect, and report on code coverage in Python programs.
+
+usage: coverage <command> [options] [args]
+
+Commands:
+    annotate    Annotate source files with execution information.
+    combine     Combine a number of data files.
+    erase       Erase previously collected coverage data.
+    help        Get help on using coverage.py.
+    html        Create an HTML report.
+    report      Report coverage stats on modules.
+    run         Run a Python program and measure code execution.
+    xml         Create an XML report of coverage results.
+
+Use "coverage help <command>" for detailed help on any command.
+Use "coverage help classic" for help on older command syntax.
+For more information, see http://nedbatchelder.com/code/coverage
 """
