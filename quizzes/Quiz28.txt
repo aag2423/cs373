@@ -1,0 +1,35 @@
+--
+CS373: Quiz #28 (5 pts) <Jake>
+--
+
+--------------------------------------------------------------------------
+ 1. The Self-Adaptive Process
+    The first part of self-adaptivity is regular reviews of the process.
+    Usually you do these with every iteration. At the end of each
+    iteration, have a short meeting and ask yourself the following
+    questions (culled from Norm Kerth)...
+    List any two of the four:
+    [The New Methodology]
+    (2 pts)
+--
+
+What did we do well?
+What have we learned?
+What can we do better?
+What puzzles us?
+
+--------------------------------------------------------------------------
+ 2. What is the multiplicity between Rental and Customer?
+    [RF: Ch. 1, pg. 2]
+    (1 pt)
+--
+
+many to one
+
+--------------------------------------------------------------------------
+ 3. What needs to be built, as the first step in refactoring?
+    [RF: Ch. 1, pg. 7]
+    (1 pt)
+--
+
+a set of tests
