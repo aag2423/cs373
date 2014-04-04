@@ -4,7 +4,7 @@
 # Reflection.py
 # -------------
 
-print "Reflection.py"
+print("Reflection.py")
 
 class A (object) :
     def f (self) :
@@ -15,7 +15,7 @@ class B (object) :
         self.v = v
 
 def test (a) :
-    assert a().f() == "A.f()"
+    assert(a().f() == "A.f()")
 
 test(A)
 test(type(A()))
@@ -24,22 +24,22 @@ test(globals()["A"])
 
 try :
     globals()["B"]()
-    assert False
+    assert(False)
 except TypeError, e :
-    assert type(e)      is     TypeError
-    assert type(e.args) is     tuple
-    assert len(e.args)  is     1
-    assert e.args       is not ('__init__() takes exactly 2 arguments (1 given)',)
-    assert e.args       ==     ('__init__() takes exactly 2 arguments (1 given)',)
+    assert(type(e)      is     TypeError)
+    assert(type(e.args) is     tuple)
+    assert(len(e.args)  is     1)
+    assert(e.args       is not ('__init__() takes exactly 2 arguments (1 given)',))
+    assert(e.args       ==     ('__init__() takes exactly 2 arguments (1 given)',))
 
 try :
     globals()["C"]
-    assert False
+    assert(False)
 except KeyError, e :
-    assert type(e)      is     KeyError
-    assert type(e.args) is     tuple
-    assert len(e.args)  is     1
-    assert e.args       is not ('C',)
-    assert e.args       ==     ('C',)
+    assert(type(e)      is     KeyError)
+    assert(type(e.args) is     tuple)
+    assert(len(e.args)  is     1)
+    assert(e.args       is not ('C',))
+    assert(e.args       ==     ('C',))
 
-print "Done."
+print("Done.")

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # ---------
 # Store2.py
@@ -15,7 +15,7 @@ Replace Temp with Query (120)
 Changed thisAmount to each.get_charge()
 """
 
-print "Store2.py"
+print("Store2.py")
 
 class Movie (object) :
     REGULAR     = 0
@@ -105,47 +105,47 @@ class Customer (object) :
         return result
 
 x = Customer("Penelope")
-assert x.statement() ==                     \
+assert(x.statement() ==                     \
     "Rental Record for Penelope\n"        + \
     "Amount owed is 0\n"                  + \
-    "You earned 0 frequent renter points"
+    "You earned 0 frequent renter points")
 
 x.add_rental(Rental(Movie("Shane", Movie.REGULAR), 2))
-assert x.statement() ==                     \
+assert(x.statement() ==                     \
     "Rental Record for Penelope\n"        + \
     "\tShane\t2\n"                        + \
     "Amount owed is 2\n"                  + \
-    "You earned 1 frequent renter points"
+    "You earned 1 frequent renter points")
 
 x.add_rental(Rental(Movie("Red River", Movie.REGULAR), 5))
-assert x.statement() ==                     \
+assert(x.statement() ==                     \
     "Rental Record for Penelope\n"        + \
     "\tShane\t2\n"                        + \
     "\tRed River\t6.5\n"                  + \
     "Amount owed is 8.5\n"                + \
-    "You earned 2 frequent renter points"
+    "You earned 2 frequent renter points")
 
 x.add_rental(Rental(Movie("Giant", Movie.NEW_RELEASE), 1))
-assert x.statement() ==                     \
+assert(x.statement() ==                     \
     "Rental Record for Penelope\n"        + \
     "\tShane\t2\n"                        + \
     "\tRed River\t6.5\n"                  + \
     "\tGiant\t3\n"                        + \
     "Amount owed is 11.5\n"               + \
-    "You earned 3 frequent renter points"
+    "You earned 3 frequent renter points")
 
 x.add_rental(Rental(Movie("2001", Movie.NEW_RELEASE), 3))
-assert x.statement() ==                     \
+assert(x.statement() ==                     \
     "Rental Record for Penelope\n"        + \
     "\tShane\t2\n"                        + \
     "\tRed River\t6.5\n"                  + \
     "\tGiant\t3\n"                        + \
     "\t2001\t9\n"                         + \
     "Amount owed is 20.5\n"               + \
-    "You earned 5 frequent renter points"
+    "You earned 5 frequent renter points")
 
 x.add_rental(Rental(Movie("Big Country", Movie.CHILDRENS), 3))
-assert x.statement() ==                     \
+assert(x.statement() ==                     \
     "Rental Record for Penelope\n"        + \
     "\tShane\t2\n"                        + \
     "\tRed River\t6.5\n"                  + \
@@ -153,10 +153,10 @@ assert x.statement() ==                     \
     "\t2001\t9\n"                         + \
     "\tBig Country\t1.5\n"                + \
     "Amount owed is 22.0\n"               + \
-    "You earned 6 frequent renter points"
+    "You earned 6 frequent renter points")
 
 x.add_rental(Rental(Movie("Spartacus", Movie.CHILDRENS), 5))
-assert x.statement() ==                     \
+assert(x.statement() ==                     \
     "Rental Record for Penelope\n"        + \
     "\tShane\t2\n"                        + \
     "\tRed River\t6.5\n"                  + \
@@ -165,6 +165,6 @@ assert x.statement() ==                     \
     "\tBig Country\t1.5\n"                + \
     "\tSpartacus\t4.5\n"                  + \
     "Amount owed is 26.5\n"               + \
-    "You earned 7 frequent renter points"
+    "You earned 7 frequent renter points")
 
-print "Done."
+print("Done.")
