@@ -14,13 +14,9 @@ class B () :
     def __init__ (self, v) :
         self.v = v
 
-def test (a) :
-    assert(a().f() == "A.f()")
-
-test(A)
-test(type(A()))
-test(A().__class__)
-test(globals()["A"])
+assert(A().f()              == "A.f()")
+assert(A().__class__().f()  == "A.f()")
+assert(globals()["A"]().f() == "A.f()")
 
 try :
     globals()["B"]()
