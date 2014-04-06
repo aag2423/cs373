@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # -------------
 # Reflection.py
@@ -6,11 +6,11 @@
 
 print("Reflection.py")
 
-class A (object) :
+class A () :
     def f (self) :
         return "A.f()"
 
-class B (object) :
+class B () :
     def __init__ (self, v) :
         self.v = v
 
@@ -25,17 +25,17 @@ test(globals()["A"])
 try :
     globals()["B"]()
     assert(False)
-except TypeError, e :
+except TypeError as e :
     assert(type(e)      is     TypeError)
     assert(type(e.args) is     tuple)
     assert(len(e.args)  is     1)
-    assert(e.args       is not ('__init__() takes exactly 2 arguments (1 given)',))
-    assert(e.args       ==     ('__init__() takes exactly 2 arguments (1 given)',))
+    assert(e.args       is not ("__init__() missing 1 required positional argument: 'v'",))
+    assert(e.args       ==     ("__init__() missing 1 required positional argument: 'v'",))
 
 try :
     globals()["C"]
     assert(False)
-except KeyError, e :
+except KeyError as e :
     assert(type(e)      is     KeyError)
     assert(type(e.args) is     tuple)
     assert(len(e.args)  is     1)
