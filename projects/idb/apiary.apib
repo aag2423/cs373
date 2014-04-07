@@ -1,0 +1,437 @@
+--- cs373-wcdb-api ---
+---
+This documents our RESTful API for our World Crisis Database.  We separated our HTML returns and our JSON returns by prepending /api, similar
+to Facebook's graph API. Example: API endpoint for '/people' would be '/api/people'.
+POST requests are used to create, while PUT requests are used to update endpoints.
+
+HTTP status codes as stated below are expected to be followed:
+
+- 200 `OK` - the request was successful (some API calls may return 201 instead).
+- 201 `Created` - the request was successful and a resource was created.
+- 204 `No Content` - the request was successful but there is no representation to return (i.e. the response is empty).
+- 400 `Bad Request` - the request could not be understood or was missing required parameters.
+- 401 `Unauthorized` - authentication failed or user doesn't have permissions for requested operation.
+- 403 `Forbidden` - access denied.
+- 404 `Not Found` - resource was not found
+- 405 `Method Not Allowed` - requested method is not supported for resource.
+---
+
+--
+Crisis Data
+--
+Lists the crises in the database
+GET /api/crises
+< 200
+< Content-Type: application/json
+[
+    {
+        "name": "Cambodian Genocide",
+        "id": 1,
+        "kind": "Attack"
+    }
+]
+
+Displays the information for a specific crisis,
+id is the database primary key
+GET /api/crises/{id}
+< 200
+< Content-Type: application/json
+{
+    "name": "Cambodian Genocide",
+    "id": 1,
+    "start_date": "1975-MM-DD",
+    "end_date": "1978-MM-DD",
+    "location": "Cambodia",
+    "kind": "Genocide",
+    "description": "Long text description of the Cambodian Genocide",
+    "human_impact": "Lost 25% of population over three years",
+    "economic_impact": "Peasant farming society centralized",
+    "maps": ["http://goo.gl/maps/PKI5L"],
+    "images": ["http://worldwithoutgenocide.org/wp-content/uploads/2010/01/Cambodia.jpg"],
+    "videos": ["http://www.youtube.com/watch?v=1-SI8RF6wDE"],
+    "social_media": ["https://twitter.com/UN"],
+    "ways_to_help": ["Donation"],
+    "resources_needed": ["Monetary donation"],
+    "people": [1],
+    "organizations": [1],
+    "external_links": ["unfoundation.org"],
+    "citations": ["http://worldwithoutgenocide.org/genocides-and-conflicts/cambodian-genocide"],
+}
+
+Create a new entry for a crisis.
+POST /api/crises
+> Content-Type: application/json
+{
+    "name": "Cambodian Genocide",
+    "start_date": "1975-MM-DD",
+    "end_date": "1978-MM-DD",
+    "location": "Cambodia",
+    "kind": "Attack",
+    "description": "Long text description of the Cambodian Genocide",
+    "human_impact": "Lost 25% of population over three years",
+    "economic_impact": "Peasant farming society centralized",
+    "maps": ["http://goo.gl/maps/PKI5L"],
+    "images": ["http://worldwithoutgenocide.org/wp-content/uploads/2010/01/Cambodia.jpg"],
+    "videos": ["http://www.youtube.com/watch?v=1-SI8RF6wDE"],
+    "social_media": ["https://twitter.com/UN"],
+    "ways_to_help": ["Donation"],
+    "resources_needed": ["Monetary donation"],
+    "people": [1],
+    "organizations": [1],
+    "external_links": ["unfoundation.org"],
+    "citations": ["http://worldwithoutgenocide.org/genocides-and-conflicts/cambodian-genocide"],
+}
+< 201
+< Content-Type: application/json
+{ id: 1 }
+
+Update an existing crisis.
+PUT /api/crises/{id}
+> Content-Type: application/json
+{
+    "name": "Cambodian Genocide",
+    "start_date": "1975-MM-DD",
+    "end_date": "1978-MM-DD",
+    "location": "Cambodia",
+    "kind": "Attack",
+    "description": "Long text description of the Cambodian Genocide",
+    "human_impact": "Lost 25% of population over three years",
+    "economic_impact": "Peasant farming society centralized",
+    "maps": ["http://goo.gl/maps/PKI5L"],
+    "images": ["http://worldwithoutgenocide.org/wp-content/uploads/2010/01/Cambodia.jpg"],
+    "videos": ["http://www.youtube.com/watch?v=1-SI8RF6wDE"],
+    "social_media": ["https://twitter.com/UN"],
+    "ways_to_help": ["Donation"],
+    "resources_needed": ["Monetary donation"],
+    "people": [1],
+    "organizations": [1],
+    "external_links": ["unfoundation.org"],
+    "citations": ["http://worldwithoutgenocide.org/genocides-and-conflicts/cambodian-genocide"],
+}
+< 204
+
+Delete an existing crisis
+DELETE /api/crises/{id}
+< 204
+
+List all related organizations
+GET /api/crises/{id}/organizations
+< 200
+< Content-Type: application/json
+[
+    {
+        "id": 1,
+        "name": "FEMA",
+        "established": "1987-06-19",
+        "location": "United States of America",
+        "kind": "Disaster Relief",
+        "description": "Long text description for FEMA",
+        "images": ["http://upload.wikimedia.org/wikipedia/commons/3/3a/US-FEMA-Pre2003Seal.svg"],
+        "videos": ["http://www.youtube.com/watch?v=UXLXjys9EgM"],
+        "maps": ["http://goo.gl/maps/9dLXB"],
+        "social_media": ["https://twitter.com/fema"],
+        "external_links": ["http://www.fema.gov/"],
+        "citations": ["http://en.wikipedia.org/wiki/Federal_Emergency_Management_Agency"],
+        "contact_info": {"name": "FEMA",
+                         "address": "P.O. Box 10055 Hyattsville, MD 20782-8055"
+                         "email": "None",
+                         "phone": "800-621-3362"}
+    }
+]
+
+List all related people
+GET /api/crises/{id}/people
+< 200
+< Content-Type: application/json
+[
+    {
+        "name": "Al Gore",
+        "id": 1,
+        "DOB": "1948-03-31",
+        "location": "United States of America",
+        "kind": "Vice President",
+        "description": "Long text description for Al Gore",
+        "images": ["http://en.wikipedia.org/wiki/File:Al_Gore_at_SapphireNow_2010_cropped.jpg"],
+        "videos": ["http://www.youtube.com/watch?v=-T-yqlH67_4"],
+        "maps": ["http://goo.gl/maps/yzrDw"],
+        "social_media": ["https://twitter.com/algore"],
+        "external_links": ["http://www.algore.com/"],
+        "citations": ["http://en.wikipedia.org/wiki/Al_Gore"],
+    }
+]
+
+--
+People Data
+--
+Lists the people in the database
+GET /api/people
+< 200
+< Content-Type: application/json
+[
+    {
+        "name": "Al Gore",
+        "id": 1,
+        "kind": "Vice President"
+    }
+]
+
+Displays the information for a specific crisis,
+id is the database primary key
+GET /api/people/{id}
+< 200
+< Content-Type: application/json
+{
+    "name": "Al Gore",
+    "id": 1,
+    "DOB": "1948-03-31",
+    "location": "United States of America",
+    "kind": "Vice President",
+    "description": "Long text description for Al Gore",
+    "images": ["http://en.wikipedia.org/wiki/File:Al_Gore_at_SapphireNow_2010_cropped.jpg"],
+    "videos": ["http://www.youtube.com/watch?v=-T-yqlH67_4"],
+    "maps": ["http://goo.gl/maps/yzrDw"],
+    "social_media": ["https://twitter.com/algore"],
+    "crises": [1],
+    "organizations": [1],
+    "external_links": ["http://www.algore.com/"],
+    "citations": ["http://en.wikipedia.org/wiki/Al_Gore"],
+}
+
+Create a new entry for a person
+POST /api/people
+> Content-Type: application/json
+{
+    "name": "Al Gore",
+    "DOB": "1948-03-31",
+    "location": "United States of America",
+    "kind": "Vice President",
+    "description": "Long text description for Al Gore",
+    "images": ["http://en.wikipedia.org/wiki/File:Al_Gore_at_SapphireNow_2010_cropped.jpg"],
+    "videos": ["http://www.youtube.com/watch?v=-T-yqlH67_4"],
+    "maps": ["http://goo.gl/maps/yzrDw"],
+    "social_media": ["https://twitter.com/algore"],
+    "crises": [1],
+    "organizations": [1],
+    "external_links": ["http://www.algore.com/"],
+    "citations": ["http://en.wikipedia.org/wiki/Al_Gore"],
+}
+< 201
+< Content-Type: application/json
+{ id: 1 }
+
+Update an existing person
+PUT /api/people/{id}
+> Content-Type: application/json
+{
+    "name": "Al Gore",
+    "DOB": "1948-03-31",
+    "location": "United States of America",
+    "kind": "Vice President",
+    "description": "Long text description for Al Gore",
+    "images": ["http://en.wikipedia.org/wiki/File:Al_Gore_at_SapphireNow_2010_cropped.jpg"],
+    "videos": ["http://www.youtube.com/watch?v=-T-yqlH67_4"],
+    "maps": ["http://goo.gl/maps/yzrDw"],
+    "social_media": ["https://twitter.com/algore"],
+    "crises": [1],
+    "organizations": [1],
+    "external_links": ["http://www.algore.com/"],
+    "citations": ["http://en.wikipedia.org/wiki/Al_Gore"],
+}
+< 204
+
+Delete an existing person
+DELETE /api/people/{id}
+< 204
+
+List all related organizations
+GET /api/people/{id}/organizations
+< 200
+< Content-Type: application/json
+[
+    {
+        "id": 1,
+        "name": "FEMA",
+        "established": "1987-06-19",
+        "location": "United States of America",
+        "kind": "Disaster Relief",
+        "description": "Long text description for FEMA",
+        "images": ["http://upload.wikimedia.org/wikipedia/commons/3/3a/US-FEMA-Pre2003Seal.svg"],
+        "videos": ["http://www.youtube.com/watch?v=UXLXjys9EgM"],
+        "maps": ["http://goo.gl/maps/9dLXB"],
+        "social_media": ["https://twitter.com/fema"],
+        "external_links": ["http://www.fema.gov/"],
+        "citations": ["http://en.wikipedia.org/wiki/Federal_Emergency_Management_Agency"],
+        "contact_info": {"name": "FEMA",
+                         "address": "P.O. Box 10055 Hyattsville, MD 20782-8055"
+                         "email": "None",
+                         "phone": "800-621-3362"}
+    }
+]
+
+List all related crises
+GET /api/people/{id}/crises
+< 200
+< Content-Type: application/json
+[
+    {
+        "name": "Cambodian Genocide",
+        "id": 1,
+        "start_date": "1975-MM-DD",
+        "end_date": "1978-MM-DD",
+        "location": "Cambodia",
+        "kind": "Genocide",
+        "description": "Long text description of the Cambodian Genocide",
+        "human_impact": "Lost 25% of population over three years",
+        "economic_impact": "Peasant farming society centralized",
+        "maps": ["http://goo.gl/maps/PKI5L"],
+        "images": ["http://worldwithoutgenocide.org/wp-content/uploads/2010/01/Cambodia.jpg"],
+        "videos": ["http://www.youtube.com/watch?v=1-SI8RF6wDE"],
+        "social_media": ["https://twitter.com/UN"],
+        "ways_to_help": ["Donation"],
+        "resources_needed": ["Monetary donation"],
+        "external_links": ["unfoundation.org"],
+        "citations": ["http://worldwithoutgenocide.org/genocides-and-conflicts/cambodian-genocide"],
+    }
+]
+
+--
+Organization Data
+--
+Lists the people in the database
+GET /api/organizations
+< 200
+< Content-Type: application/json
+[
+    {
+        "name": "Federal Emergency Management Agency",
+        "id": 1,
+        "kind": "Disaster Relief"
+    }
+]
+
+Displays the information for a specific organization,
+id is the database primary key
+GET /api/organizations/{id}
+< 200
+< Content-Type: application/json
+{
+    "name": "FEMA",
+    "id": 1,
+    "established": "1987-06-19",
+    "location": "United States of America",
+    "kind": "Disaster Relief",
+    "description": "Long text description for FEMA",
+    "images": ["http://upload.wikimedia.org/wikipedia/commons/3/3a/US-FEMA-Pre2003Seal.svg"],
+    "videos": ["http://www.youtube.com/watch?v=UXLXjys9EgM"],
+    "maps": ["http://goo.gl/maps/9dLXB"],
+    "social_media": ["https://twitter.com/fema"],
+    "crises": [1],
+    "people": [1],
+    "external_links": ["http://www.fema.gov/"],
+    "citations": ["http://en.wikipedia.org/wiki/Federal_Emergency_Management_Agency"],
+    "contact_info": {"name": "FEMA",
+                     "address": "P.O. Box 10055 Hyattsville, MD 20782-8055"
+                     "email": "None",
+                     "phone": "800-621-3362"}
+}
+
+Create a new entry for an organization
+POST /api/organizations
+> Content-Type: application/json
+{
+    "name": "FEMA",
+    "established": "1987-06-19",
+    "location": "United States of America",
+    "kind": "Disaster Relief",
+    "description": "Long text description for FEMA",
+    "images": ["http://upload.wikimedia.org/wikipedia/commons/3/3a/US-FEMA-Pre2003Seal.svg"],
+    "videos": ["http://www.youtube.com/watch?v=UXLXjys9EgM"],
+    "maps": ["http://goo.gl/maps/9dLXB"],
+    "social_media": ["https://twitter.com/fema"],
+    "crises": [1],
+    "people": [1],
+    "external_links": ["http://www.fema.gov/"],
+    "citations": ["http://en.wikipedia.org/wiki/Federal_Emergency_Management_Agency"],
+    "contact_info": {"name": "FEMA",
+                     "address": "P.O. Box 10055 Hyattsville, MD 20782-8055"
+                     "email": "None",
+                     "phone": "800-621-3362"}
+}
+< 201
+< Content-Type: application/json
+{ id: 1 }
+
+Update an existing organization
+PUT /api/organizations/{id}
+> Content-Type: application/json
+{
+    "name": "FEMA",
+    "established": "1987-06-19",
+    "location": "United States of America",
+    "kind": "Disaster Relief",
+    "description": "Long text description for FEMA",
+    "images": ["http://upload.wikimedia.org/wikipedia/commons/3/3a/US-FEMA-Pre2003Seal.svg"],
+    "videos": ["http://www.youtube.com/watch?v=UXLXjys9EgM"],
+    "maps": ["http://goo.gl/maps/9dLXB"],
+    "social_media": ["https://twitter.com/fema"],
+    "crises": [1],
+    "people": [1],
+    "external_links": ["http://www.fema.gov/"],
+    "citations": ["http://en.wikipedia.org/wiki/Federal_Emergency_Management_Agency"],
+    "contact_info": {"name": "FEMA",
+                     "address": "P.O. Box 10055 Hyattsville, MD 20782-8055"
+                     "email": "None",
+                     "phone": "800-621-3362"}
+}
+< 204
+
+Delete an existing organization
+DELETE /api/organizations/{id}
+< 204
+
+List all related crises
+GET /api/organizations/{id}/crises
+< 200
+< Content-Type: application/json
+[
+    {
+        "name": "Cambodian Genocide",
+        "id": 1,
+        "start_date": "1975-MM-DD",
+        "end_date": "1978-MM-DD",
+        "location": "Cambodia",
+        "kind": "Genocide",
+        "description": "Long text description of the Cambodian Genocide",
+        "human_impact": "Lost 25% of population over three years",
+        "economic_impact": "Peasant farming society centralized",
+        "maps": ["http://goo.gl/maps/PKI5L"],
+        "images": ["http://worldwithoutgenocide.org/wp-content/uploads/2010/01/Cambodia.jpg"],
+        "videos": ["http://www.youtube.com/watch?v=1-SI8RF6wDE"],
+        "social_media": ["https://twitter.com/UN"],
+        "ways_to_help": ["Donation"],
+        "resources_needed": ["Monetary donation"],
+        "external_links": ["unfoundation.org"],
+        "citations": ["http://worldwithoutgenocide.org/genocides-and-conflicts/cambodian-genocide"],
+    }
+]
+
+List all related people
+GET /api/organizations/{id}/people
+< 200
+< Content-Type: application/json
+[
+    {
+        "name": "Al Gore",
+        "id": 1,
+        "DOB": "1948-03-31",
+        "location": "United States of America",
+        "kind": "Vice President",
+        "description": "Long text description for Al Gore",
+        "images": ["http://en.wikipedia.org/wiki/File:Al_Gore_at_SapphireNow_2010_cropped.jpg"],
+        "videos": ["http://www.youtube.com/watch?v=-T-yqlH67_4"],
+        "maps": ["http://goo.gl/maps/yzrDw"],
+        "social_media": ["https://twitter.com/algore"],
+        "external_links": ["http://www.algore.com/"],
+        "citations": ["http://en.wikipedia.org/wiki/Al_Gore"],
+    }
+]
