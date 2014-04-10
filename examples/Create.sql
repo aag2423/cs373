@@ -5,20 +5,14 @@ Explain
 http://www.sitepoint.com/using-explain-to-write-better-mysql-queries/
 */
 
-/* -----------------------------------------------------------------------
-Drop
-*/
-
+# ------------------------------------------------------------------------
 select "Drop";
 
 drop table if exists Student;
 drop table if exists Apply;
 drop table if exists College;
 
-/* -----------------------------------------------------------------------
-Create
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Create";
 
@@ -39,10 +33,7 @@ create table College (
     state      char(2),
     enrollment int);
 
-/* -----------------------------------------------------------------------
-Show
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Show";
 
@@ -51,10 +42,7 @@ show columns from Student;
 show columns from Apply;
 show columns from College;
 
-/* -----------------------------------------------------------------------
-Insert
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Insert";
 
@@ -101,10 +89,7 @@ insert into College values ('Irene',    'TX', 25000);
 insert into College values ('MIT',      'MA', 10000);
 insert into College values ('Stanford', 'CA', 15000);
 
-/* -----------------------------------------------------------------------
-Select
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Select";
 
@@ -117,10 +102,7 @@ explain select * from Apply;
 explain select * from College;
         select * from College;
 
-/* -----------------------------------------------------------------------
-Drop
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Drop";
 

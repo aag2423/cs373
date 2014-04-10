@@ -5,21 +5,14 @@ Explain
 http://www.sitepoint.com/using-explain-to-write-better-mysql-queries/
 */
 
-/* -----------------------------------------------------------------------
-Drop
-*/
-
-select "";
+# ------------------------------------------------------------------------
 select "Drop";
 
 drop table if exists Student;
 drop table if exists Apply;
 drop table if exists College;
 
-/* -----------------------------------------------------------------------
-Create
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Create";
 
@@ -40,10 +33,7 @@ create table College (
     state      char(2),
     enrollment int);
 
-/* -----------------------------------------------------------------------
-Insert
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Insert";
 
@@ -90,10 +80,7 @@ insert into College values ('Irene',    'TX', 25000);
 insert into College values ('MIT',      'MA', 10000);
 insert into College values ('Stanford', 'CA', 15000);
 
-/* -----------------------------------------------------------------------
-Select
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Select";
 
@@ -106,12 +93,9 @@ explain select * from Apply;
 explain select * from College;
         select * from College;
 
-/* -----------------------------------------------------------------------
-Student cross join Apply
-*/
-
+# ------------------------------------------------------------------------
 select "";
-select "Cross Join";
+select "Student cross join Apply";
 
 # select *
 #     from Student, Apply
@@ -125,12 +109,9 @@ select *
     from Student cross join Apply
     order by Student.sID;
 
-/* -----------------------------------------------------------------------
-Student theta join[Student.sID = Apply.sID] Apply
-*/
-
+# ------------------------------------------------------------------------
 select "";
-select "Theta Join";
+select "Student theta join[Student.sID = Apply.sID] Apply";
 
 # select *
 #     from Student
@@ -149,12 +130,9 @@ select *
     from Student
     inner join Apply using (sID);
 
-/* -----------------------------------------------------------------------
-Student natural join Apply
-*/
-
+# ------------------------------------------------------------------------
 select "";
-select "Natural Join";
+select "Student natural join Apply";
 
 explain select *
     from Student natural join Apply;
@@ -163,17 +141,18 @@ select *
     from Student natural join Apply;
 
 /* -----------------------------------------------------------------------
-name and GPA of students
-   with high school size > 1000,
-   with major            = CS,
-   with decision         = false
-
 project[sName, GPA]
     (select[(sizeHS > 1000)     and
             (major = 'CS')      and
             (decision = false)]
         (Student join Apply))
 */
+
+select "";
+select "name and GPA of students";
+select "   with high school size > 1000,";
+select "   with major            = CS,";
+select "   with decision         = false";
 
 explain select *
     from Student
@@ -196,12 +175,6 @@ select sName, GPA
     where (sizeHS > 1000) and (major = 'CS') and (decision = false);
 
 /* -----------------------------------------------------------------------
-name and GPA of students with
-   with high school size > 500,
-   with major            = CS,
-   with decision         = false,
-   with enrollment       > 20000
-
 project[sName, GPA]
     (select[(sizeHS > 500)       and
            (major = 'CS')        and
@@ -210,6 +183,13 @@ project[sName, GPA]
         (Student join Apply join College))
 */
 
+select "";
+select "name and GPA of students with";
+select "   with high school size > 500,";
+select "   with major            = CS,";
+select "   with decision         = false,";
+select "   with enrollment       > 20000";
+
 explain select *
     from Student
         inner join Apply   using (sID)
@@ -246,10 +226,7 @@ select sName, GPA
           (decision   = true)  and
           (enrollment > 20000);
 
-/* -----------------------------------------------------------------------
-Drop
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Drop";
 

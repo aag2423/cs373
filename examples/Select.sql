@@ -5,21 +5,14 @@ Explain
 http://www.sitepoint.com/using-explain-to-write-better-mysql-queries/
 */
 
-/* -----------------------------------------------------------------------
-Drop
-*/
-
-select "";
+# ------------------------------------------------------------------------
 select "Drop";
 
 drop table if exists Student;
 drop table if exists Apply;
 drop table if exists College;
 
-/* -----------------------------------------------------------------------
-Create
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Create";
 
@@ -40,10 +33,7 @@ create table College (
     state      char(2),
     enrollment int);
 
-/* -----------------------------------------------------------------------
-Insert
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Insert";
 
@@ -90,10 +80,7 @@ insert into College values ('Irene',    'TX', 25000);
 insert into College values ('MIT',      'MA', 10000);
 insert into College values ('Stanford', 'CA', 15000);
 
-/* -----------------------------------------------------------------------
-Select
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Select";
 
@@ -107,14 +94,12 @@ explain select * from College;
         select * from College;
 
 /* -----------------------------------------------------------------------
-students with GPA > 3.7
-
 select[GPA > 3.7]
    (Student)
 */
 
 select "";
-select "Select";
+select "students with GPA > 3.7";
 
 explain select *
     from Student
@@ -125,12 +110,12 @@ select *
     where (GPA > 3.7);
 
 /* -----------------------------------------------------------------------
-students with GPA > 3.7 and high school size < 1000
-
 select[(GPA > 3.7) and (sizeHS < 1000)]
    (Student)
 */
 
+select "students with GPA > 3.7 and high school size < 1000";
+
 explain select *
     from Student
     where (GPA > 3.7) and (sizeHS < 1000);
@@ -140,12 +125,12 @@ select *
     where (GPA > 3.7) and (sizeHS < 1000);
 
 /* -----------------------------------------------------------------------
-applications to Stanford and major = CS
-
 select[(cName = 'Stanford') and (major = 'CS']
    (Apply)
 */
 
+select "applications to Stanford and major = CS";
+
 explain select *
     from Apply
     where (cName = 'Stanford') and (major = 'CS');
@@ -155,14 +140,12 @@ select *
     where (cName = 'Stanford') and (major = 'CS');
 
 /* -----------------------------------------------------------------------
-student ID and decision of applications
-
 project[sID, decision]
    (Apply)
 */
 
 select "";
-select "Project";
+select "student ID and decision of applications";
 
 explain select sID, decision
     from Apply;
@@ -171,15 +154,13 @@ select sID, decision
     from Apply;
 
 /* -----------------------------------------------------------------------
-ID and name of students with GPA > 3.7
-
 project[sID, sName]
    (select[GPA > 3.7]
        (Student))
 */
 
 select "";
-select "Select and Project";
+select "ID and name of students with GPA > 3.7";
 
 explain select sID, sName
     from Student
@@ -190,14 +171,12 @@ select sID, sName
     where (GPA > 3.7);
 
 /* -----------------------------------------------------------------------
-major and decision of applications
-
 project[major, decision]
    (Apply)
 */
 
 select "";
-select "Distinct";
+select "major and decision of applications";
 
 explain select major, decision
     from Apply
@@ -215,10 +194,7 @@ select distinct major, decision
     from Apply
     order by major;
 
-/* -----------------------------------------------------------------------
-Drop
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Drop";
 

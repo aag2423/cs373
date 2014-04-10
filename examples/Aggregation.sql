@@ -1,20 +1,13 @@
 use downing_test;
 
-/* -----------------------------------------------------------------------
-Drop
-*/
-
-select "";
+# ------------------------------------------------------------------------
 select "Drop";
 
 drop table if exists Student;
 drop table if exists Apply;
 drop table if exists College;
 
-/* -----------------------------------------------------------------------
-Create
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Create";
 
@@ -35,10 +28,7 @@ create table College (
     state      char(2),
     enrollment int);
 
-/* -----------------------------------------------------------------------
-Insert
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Insert";
 
@@ -85,10 +75,7 @@ insert into College values ('Irene',    'TX', 25000);
 insert into College values ('MIT',      'MA', 10000);
 insert into College values ('Stanford', 'CA', 15000);
 
-/* -----------------------------------------------------------------------
-Select
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Select";
 
@@ -101,80 +88,71 @@ explain select * from Apply;
 explain select * from College;
         select * from College;
 
-/* -----------------------------------------------------------------------
-average GPA of students
-*/
-
+# ------------------------------------------------------------------------
 select "";
-select "average GPA of students";
+select "stats on GPA of students";
 
 select *
-    from Student
-    order by sID;
+    from Student;
+
+select count(*)
+    from Student;
+
+select GPA
+    from Student;
 
 select avg(GPA)
     from Student;
 
-/* -----------------------------------------------------------------------
-lowest GPA of students applying to CS
-*/
+select max(GPA)
+    from Student;
 
+select min(GPA)
+    from Student;
+
+select sum(GPA)
+    from Student;
+
+# ------------------------------------------------------------------------
 select "";
-select "lowest GPA of students applying to CS";
+select "stats on GPA of students applying to CS";
 
 select *
-    from Student inner join Apply
-    using (sID)
-    where major = 'CS'
+    from Student
+    where sID in (select sID from Apply where major = 'CS')
+    order by GPA desc;
+
+select count(*)
+    from Student
+    where sID in (select sID from Apply where major = 'CS')
+    order by GPA desc;
+
+select GPA
+    from Student
+    where sID in (select sID from Apply where major = 'CS')
+    order by GPA desc;
+
+select avg(GPA)
+    from Student
+    where sID in (select sID from Apply where major = 'CS')
+    order by GPA desc;
+
+select max(GPA)
+    from Student
+    where sID in (select sID from Apply where major = 'CS')
     order by GPA desc;
 
 select min(GPA)
-    from Student inner join Apply
-    using (sID)
-    where major = 'CS';
-
-/* -----------------------------------------------------------------------
-average GPA of students applying to CS
-*/
-
-select "";
-select "average GPA of students applying to CS";
-
-select "this is not right";
-select "because of duplicates";
-
-select *
     from Student
-    inner join Apply using (sID)
-    where major = 'CS'
+    where sID in (select sID from Apply where major = 'CS')
     order by GPA desc;
 
-select avg(GPA)
+select sum(GPA)
     from Student
-    inner join Apply using (sID)
-    where major = 'CS';
-
-select "this is right";
-
-select *
-    from Student
-    where sID in
-        (select sID
-            from Apply
-            where major = 'CS')
+    where sID in (select sID from Apply where major = 'CS')
     order by GPA desc;
 
-select avg(GPA)
-    from Student
-    where sID in (
-        select sID
-            from Apply
-            where major = 'CS');
-
-/* -----------------------------------------------------------------------
-number of colleges with enrollment > 15000
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "number of colleges with enrollment > 15000";
 
@@ -191,10 +169,7 @@ select count(*)
     from College
     where enrollment > 15000;
 
-/* -----------------------------------------------------------------------
-number of students who applied to Cornell
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "number of students who applied to Cornell";
 
@@ -203,34 +178,27 @@ select "because of duplicates";
 
 select *
     from Apply
-    where cName = "Cornell"
-    order by sID;
+    where cName = "Cornell";
 
 select count(*)
     from Apply
-    where cName = "Cornell"
-    order by sID;
+    where cName = "Cornell";
 
 select "this is right";
 
 select distinct sID
     from Apply
-    where cName = "Cornell"
-    order by sID;
+    where cName = "Cornell";
 
 select count(distinct sID)
     from Apply
-    where cName = "Cornell"
-    order by sID;
+    where cName = "Cornell";
 
-/* -----------------------------------------------------------------------
-students, such that the number of other students with the same GPA
-equals the number of other students with the same high school size
-*/
-
-select "students, such that the number of other students with the same GPA";
-select "equals the number of other students with the same high school size";
+# ------------------------------------------------------------------------
 select "";
+select "students, such that the number of other students";
+select "with the same GPA equals the number of other students";
+select "with the same high school size";
 
 select *
     from Student as R
@@ -244,64 +212,64 @@ select *
             where (R.sID != S.sID) and (R.sizeHS = S.sizeHS))
     order by sID;
 
-/* -----------------------------------------------------------------------
-amount by which the average GPA of students applying to CS
-exceeds the average GPA of students not applying to CS
-*/
-
+# ------------------------------------------------------------------------
+select "";
 select "amount by which the average GPA of students applying to CS";
 select "exceeds the average GPA of students not applying to CS";
-select "";
 
 select *
     from
-        (select avg(GPA) as x
+        (select avg(GPA) as gpa
             from Student
             where sID in
                 (select sID
                     from Apply
                         where major = 'CS')) as R,
-        (select avg(GPA) as y
+        (select avg(GPA) as gpa
             from Student
             where sID not in
                 (select sID
                     from Apply
                         where major = 'CS')) as S;
 
-select R.x - S.y
+select R.gpa - S.gpa
     from
-        (select avg(GPA) as x
+        (select avg(GPA) as gpa
             from Student
             where sID in
                 (select sID
                     from Apply
                         where major = 'CS')) as R,
-        (select avg(GPA) as y
+        (select avg(GPA) as gpa
             from Student
             where sID not in
                 (select sID
                     from Apply
                         where major = 'CS')) as S;
 
-/* -----------------------------------------------------------------------
-number of applications to each college
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "number of applications to each college";
 
-select cName, sID
+select *
     from Apply
     order by cName;
+
+select *
+    from Apply
+    group by cName;
+
+select *, count(*)
+    from Apply
+    group by cName;
 
 select cName, count(*)
     from Apply
     group by cName;
 
-/* -----------------------------------------------------------------------
-number of students who applied to each college
-*/
+# ---
 
+# ------------------------------------------------------------------------
 select "";
 select "number of students who applied to each college";
 
@@ -309,14 +277,15 @@ select distinct cName, sID
     from Apply
     order by cName;
 
+select cName, count(sID)
+    from Apply
+    group by cName;
+
 select cName, count(distinct sID)
     from Apply
     group by cName;
 
-/* -----------------------------------------------------------------------
-college enrollment by state
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "college enrollment by state";
 
@@ -328,10 +297,7 @@ select state, sum(enrollment)
     from College
     group by state;
 
-/* -----------------------------------------------------------------------
-min and max GPA of applicants to each college and major
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "min and max GPA of applicants to each college and major";
 
@@ -345,10 +311,7 @@ select cName, major, min(GPA), max(GPA)
     using (sID)
     group by cName, major;
 
-/* -----------------------------------------------------------------------
-spread between min and max GPA of applicants to each college and major
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "spread between min and max GPA of applicants to each college and major";
 
@@ -357,10 +320,7 @@ select cName, major, max(GPA) - min(GPA)
     using (sID)
     group by cName, major;
 
-/* -----------------------------------------------------------------------
-max spread between min and max GPA of applicants to each college and major
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "max spread between min and max GPA of applicants to each college and major";
 
@@ -371,10 +331,7 @@ select max(x)
             using (sID)
             group by cName, major) as T;
 
-/* -----------------------------------------------------------------------
-number of colleges applied to by each student
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "number of colleges applied to by each student";
 
@@ -403,10 +360,7 @@ select sID, sName, 0
         (select sID from Apply)
 order by sID;
 
-/* -----------------------------------------------------------------------
-colleges with fewer than 5 applications
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "colleges with fewer than 5 applications";
 
@@ -442,10 +396,7 @@ select distinct cName
         <
         5;
 
-/* -----------------------------------------------------------------------
-colleges with fewer than 5 applicants
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "colleges with fewer than 5 applicants";
 
@@ -458,10 +409,7 @@ select cName
     group by cName
     having count(distinct sID) < 5;
 
-/* -----------------------------------------------------------------------
-majors whose applicant's max GPA is less than the average
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "majors whose applicant's max GPA is less than the average";
 
@@ -483,10 +431,7 @@ select major
         (select avg(GPA)
             from Student);
 
-/* -----------------------------------------------------------------------
-Drop
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Drop";
 

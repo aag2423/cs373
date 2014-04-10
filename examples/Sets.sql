@@ -5,21 +5,14 @@ Explain
 http://www.sitepoint.com/using-explain-to-write-better-mysql-queries/
 */
 
-/* -----------------------------------------------------------------------
-Drop
-*/
-
-select "";
+# ------------------------------------------------------------------------
 select "Drop";
 
 drop table if exists Student;
 drop table if exists Apply;
 drop table if exists College;
 
-/* -----------------------------------------------------------------------
-Create
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Create";
 
@@ -40,10 +33,7 @@ create table College (
     state      char(2),
     enrollment int);
 
-/* -----------------------------------------------------------------------
-Insert
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Insert";
 
@@ -90,10 +80,7 @@ insert into College values ('Irene',    'TX', 25000);
 insert into College values ('MIT',      'MA', 10000);
 insert into College values ('Stanford', 'CA', 15000);
 
-/* -----------------------------------------------------------------------
-Select
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Select";
 
@@ -106,10 +93,7 @@ explain select * from Apply;
 explain select * from College;
         select * from College;
 
-/* -----------------------------------------------------------------------
-set union: names of students OR colleges
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "set union: names of students OR colleges";
 
@@ -137,10 +121,7 @@ union
 select cName as csName from College
 order by csName;
 
-/* -----------------------------------------------------------------------
-set intersection: names of students AND colleges
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "set intersection: names of students AND colleges";
 select "MySQL does not support intersect";
@@ -205,10 +186,7 @@ select sName as csName
             from College
             where sName = cName);
 
-/* -----------------------------------------------------------------------
-set difference: ID of students who did not apply anywhere
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "set difference: ID of students who did not apply anywhere";
 select "MySQL does not support except (minus)";
@@ -243,10 +221,7 @@ select sID
             from Apply
             where Student.sID = Apply.sID);
 
-/* -----------------------------------------------------------------------
-Drop
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Drop";
 

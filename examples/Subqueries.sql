@@ -5,21 +5,14 @@ Explain
 http://www.sitepoint.com/using-explain-to-write-better-mysql-queries/
 */
 
-/* -----------------------------------------------------------------------
-Drop
-*/
-
-select "";
+# ------------------------------------------------------------------------
 select "Drop";
 
 drop table if exists Student;
 drop table if exists Apply;
 drop table if exists College;
 
-/* -----------------------------------------------------------------------
-Create
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Create";
 
@@ -40,10 +33,7 @@ create table College (
     state      char(2),
     enrollment int);
 
-/* -----------------------------------------------------------------------
-Insert
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Insert";
 
@@ -90,10 +80,7 @@ insert into College values ('Irene',    'TX', 25000);
 insert into College values ('MIT',      'MA', 10000);
 insert into College values ('Stanford', 'CA', 15000);
 
-/* -----------------------------------------------------------------------
-Select
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Select";
 
@@ -106,10 +93,7 @@ explain select * from Apply;
 explain select * from College;
         select * from College;
 
-/* -----------------------------------------------------------------------
-ID, name, and GPA of students who applied in CS
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "ID, name, and GPA of students who applied in CS";
 
@@ -163,10 +147,7 @@ select sID, sName, GPA
             from Apply
             where major = 'CS');
 
-/* -----------------------------------------------------------------------
-GPA of students who applied in CS
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "GPA of students who applied in CS";
 
@@ -228,10 +209,7 @@ select GPA
             where major = 'CS')
     order by GPA desc;
 
-/* -----------------------------------------------------------------------
-ID of students who have applied to major in CS but not in EE
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "ID of students who have applied to major in CS but not in EE";
 
@@ -287,10 +265,7 @@ select sID
         and
         sID not in (select sID from Apply where major = 'EE');
 
-/* -----------------------------------------------------------------------
-colleges, such that there's another college in the same state
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "colleges, such that there's another college in the same state";
 
@@ -326,10 +301,7 @@ select cName, state
             where (R.cName != S.cName) and
                   (R.state =  S.state));
 
-/* -----------------------------------------------------------------------
-colleges with highest enrollment
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "colleges with highest enrollment";
 
@@ -363,10 +335,7 @@ select cName, enrollment
         (select enrollment
             from College);
 
-/* -----------------------------------------------------------------------
-students with highest GPA
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "students with highest GPA";
 
@@ -430,10 +399,7 @@ select sID, sName, GPA
             where GPA is not null)
     order by sID;
 
-/* -----------------------------------------------------------------------
-Drop
-*/
-
+# ------------------------------------------------------------------------
 select "";
 select "Drop";
 
