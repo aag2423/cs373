@@ -15,6 +15,7 @@ class B () :
         self.v = v
 
 assert(A().f()              == "A.f()")
+assert(type(A())().f()      == "A.f()")
 assert(A().__class__().f()  == "A.f()")
 assert(globals()["A"]().f() == "A.f()")
 

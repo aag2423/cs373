@@ -79,14 +79,9 @@ insert into College values ('Stanford', 'CA', 15000);
 select "";
 select "Select";
 
-explain select * from Student;
-        select * from Student;
-
-explain select * from Apply;
-        select * from Apply;
-
-explain select * from College;
-        select * from College;
+select * from Student;
+select * from Apply;
+select * from College;
 
 # ------------------------------------------------------------------------
 select "";
