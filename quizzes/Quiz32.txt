@@ -1,0 +1,30 @@
+--
+CS373: Quiz #32 (5 pts) <Jake>
+--
+
+--------------------------------------------------------------------------
+ 1. Trung suggested a 13th item for Joel's Test.
+    What was it?
+    (1 pt)
+--
+
+code review
+
+--------------------------------------------------------------------------
+ 2. What issue tracker does TheZebra use?
+    (1 pt)
+--
+
+PivotalTracker
+
+--------------------------------------------------------------------------
+ 3. Trung gave several suggestions for acing a technical interview,
+    including a website and a book.
+    List any two.
+    (2 pts)
+--
+
+know basic data structures
+know basic algorithms
+careercup.com
+Programming Interviews Exposed
