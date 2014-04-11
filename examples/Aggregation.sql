@@ -268,7 +268,7 @@ select cName, count(*)
 select "";
 select "number of students who applied to each college";
 
-select distinct cName, sID
+select cName, sID
     from Apply
     order by cName;
 
@@ -276,17 +276,33 @@ select cName, count(sID)
     from Apply
     group by cName;
 
+select distinct cName, sID
+    from Apply
+    order by cName;
+
 select cName, count(distinct sID)
     from Apply
     group by cName;
 
 # ------------------------------------------------------------------------
 select "";
-select "college enrollment by state";
+select "stats on college enrollment by state";
 
-select state, enrollment
+select *
     from College
     order by state;
+
+select state, avg(enrollment)
+    from College
+    group by state;
+
+select state, max(enrollment)
+    from College
+    group by state;
+
+select state, min(enrollment)
+    from College
+    group by state;
 
 select state, sum(enrollment)
     from College
@@ -294,30 +310,22 @@ select state, sum(enrollment)
 
 # ------------------------------------------------------------------------
 select "";
-select "min and max GPA of applicants to each college and major";
+select "stats on GPA of applicants to each college and major";
 
 select cName, major, GPA
     from Student inner join Apply
     using (sID)
     order by cName, major;
 
-select cName, major, min(GPA), max(GPA)
+select cName, major, avg(GPA), max(GPA), min(GPA), max(GPA) - min(GPA)
     from Student inner join Apply
     using (sID)
     group by cName, major;
 
 # ------------------------------------------------------------------------
 select "";
-select "spread between min and max GPA of applicants to each college and major";
-
-select cName, major, max(GPA) - min(GPA)
-    from Student inner join Apply
-    using (sID)
-    group by cName, major;
-
-# ------------------------------------------------------------------------
-select "";
-select "max spread between min and max GPA of applicants to each college and major";
+select "max spread between min and max GPA of applicants";
+select "to each college and major";
 
 select max(x)
     from
