@@ -262,23 +262,17 @@ select cName, count(*)
     from Apply
     group by cName;
 
-# ---
-
 # ------------------------------------------------------------------------
 select "";
 select "number of students who applied to each college";
 
-select cName, sID
+select *
     from Apply
     order by cName;
 
 select cName, count(sID)
     from Apply
     group by cName;
-
-select distinct cName, sID
-    from Apply
-    order by cName;
 
 select cName, count(distinct sID)
     from Apply
@@ -312,14 +306,14 @@ select state, sum(enrollment)
 select "";
 select "stats on GPA of applicants to each college and major";
 
-select cName, major, GPA
-    from Student inner join Apply
-    using (sID)
+select *
+    from Student
+    inner join Apply using (sID)
     order by cName, major;
 
 select cName, major, avg(GPA), max(GPA), min(GPA), max(GPA) - min(GPA)
-    from Student inner join Apply
-    using (sID)
+    from Student
+    inner join Apply using (sID)
     group by cName, major;
 
 # ------------------------------------------------------------------------
@@ -330,9 +324,23 @@ select "to each college and major";
 select max(x)
     from
         (select max(GPA) - min(GPA) as x
-            from Student inner join Apply
-            using (sID)
+            from Student
+            inner join Apply using (sID)
             group by cName, major) as T;
+
+select cName, major, avg(GPA), max(GPA), min(GPA), max(GPA) - min(GPA)
+    from Student
+    inner join Apply using (sID)
+    group by cName, major
+    having
+        max(GPA) - min(GPA)
+        =
+		(select max(x)
+			from
+				(select max(GPA) - min(GPA) as x
+					from Student
+					inner join Apply using (sID)
+					group by cName, major) as T);
 
 # ------------------------------------------------------------------------
 select "";
@@ -340,28 +348,34 @@ select "number of colleges applied to by each student";
 
 select "does not include student who did not apply anywhere";
 
-select sID, sName, cName
-    from Student inner join Apply
-    using (sID)
-    order by sID;
+select *
+    from Student
+    inner join Apply using (sID);
 
-select sID, sName, count(distinct cName)
-    from Student inner join Apply
-    using (sID)
-    group by sID;
+select sID, sName, count(cName) as count_cName
+    from Student
+    inner join Apply using (sID)
+    group by sID
+    order by count(cName) desc;
+
+select sID, sName, count(distinct cName) as count_cName
+    from Student
+    inner join Apply using (sID)
+    group by sID
+    order by count(cName) desc;
 
 select "does include student who did not apply anywhere";
 
-select sID, sName, count(distinct cName)
-    from Student inner join Apply
-    using (sID)
+select sID, sName, count(distinct cName) as count_cName
+    from Student
+    inner join Apply using (sID)
     group by sID
 union
-select sID, sName, 0
+select sID, sName, 0 as count_cName
     from Student
     where sID not in
         (select sID from Apply)
-order by sID;
+order by count_cName desc;
 
 # ------------------------------------------------------------------------
 select "";
@@ -371,33 +385,10 @@ select cName, count(*)
     from Apply
     group by cName;
 
-select cName
+select cName, count(*)
     from Apply
     group by cName
     having count(*) < 5;
-
-select "this is equivalent";
-select "but with duplicates";
-
-select cName
-    from Apply as R
-    where
-        (select count(*)
-            from Apply as S
-            where R.cName = S.cName)
-        <
-        5;
-
-select "remove the duplicates";
-
-select distinct cName
-    from Apply as R
-    where
-        (select count(*)
-            from Apply as S
-            where R.cName = S.cName)
-        <
-        5;
 
 # ------------------------------------------------------------------------
 select "";
@@ -407,7 +398,7 @@ select cName, count(distinct sID)
     from Apply
     group by cName;
 
-select cName
+select cName, count(distinct sID)
     from Apply
     group by cName
     having count(distinct sID) < 5;
@@ -420,19 +411,18 @@ select avg(GPA)
     from Student;
 
 select major, max(GPA)
-    from Student inner join Apply
-    using (sID)
+    from Student
+    inner join Apply using (sID)
     group by major;
 
 select major
-    from Student inner join Apply
-    using (sID)
+    from Student
+    inner join Apply using (sID)
     group by major
     having
         max(GPA)
         <
-        (select avg(GPA)
-            from Student);
+        (select avg(GPA) from Student);
 
 # ------------------------------------------------------------------------
 select "";
