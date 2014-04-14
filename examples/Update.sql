@@ -87,10 +87,25 @@ select * from College;
 select "";
 select "applications of students who applied to Cornell with a GPA < 3.6";
 
+select count(*)
+    from Student
+    inner join Apply using (sID)
+    where (cName = 'Cornell') and (GPA < 3.6);
+
 select *
     from Student
     inner join Apply using (sID)
     where (cName = 'Cornell') and (GPA < 3.6);
+
+select count(*)
+    from Apply
+    where
+        (cName = 'Cornell')
+        and
+        sID in
+            (select sID
+                from Student
+                where GPA < 3.6);
 
 select *
     from Apply
@@ -104,11 +119,11 @@ select *
 
 # ------------------------------------------------------------------------
 select "";
-select "change those applications from CS to EE";
+select "change those applications from Cornell to UT";
 select "and have them accepted";
 
 update Apply
-    set major = 'EE', decision = true
+    set cName = 'UT', decision = true
     where
         (cName = 'Cornell')
         and
@@ -116,16 +131,30 @@ update Apply
             (select sID
                 from Student
                 where GPA < 3.6);
+
+select count(*)
+    from Student inner join Apply
+    using (sID)
+    where (cName = 'UT') and (GPA < 3.6);
 
 select *
     from Student inner join Apply
     using (sID)
-    where (cName = 'Cornell') and (GPA < 3.6);
+    where (cName = 'UT') and (GPA < 3.6);
 
 select *
     from Apply
     where
-        (cName = 'Cornell')
+        (cName = 'UT')
+        and
+        sID in
+            (select sID
+                from Student
+                where GPA < 3.6);
+select *
+    from Apply
+    where
+        (cName = 'UT')
         and
         sID in
             (select sID
@@ -134,18 +163,25 @@ select *
 
 # ------------------------------------------------------------------------
 select "";
-select "applications of students with the highest GPA who applied to EE";
+select "applications of students with the highest GPA who applied to CS";
+
+select count(*)
+    from Student
+    inner join Apply using (sID)
+    where major = 'CS'
+    order by GPA desc;
 
 select *
     from Student
     inner join Apply using (sID)
-    where major = 'EE'
+    where major = 'CS'
     order by GPA desc;
 
 select *
-    from Apply
+    from Student
+    inner join Apply using (sID)
     where
-        (major = 'EE')
+        (major = 'CS')
         and
         sID in
             (select sID
@@ -156,11 +192,11 @@ select *
                         where sID in
                             (select sID
                                 from Apply
-                                where major = 'EE')));
+                                where major = 'CS')));
 
 # ------------------------------------------------------------------------
 select "";
-select "change those applications from EE to CS";
+select "change those applications from CS to CSE";
 
 create temporary table T as
     (select sID
@@ -171,18 +207,18 @@ create temporary table T as
                 where sID in
                     (select sID
                         from Apply
-                        where major = 'EE')));
+                        where major = 'CS')));
 
 update Apply
     set major = 'CSE'
     where
-        (major = 'EE')
+        (major = 'CS')
         and
         sID in
             (select *
                 from T);
 
-select *
+select count(*)
     from Student
     inner join Apply using (sID)
     where major = 'CSE'
@@ -191,13 +227,16 @@ select *
 select *
     from Student
     inner join Apply using (sID)
-    where major = 'EE'
+    where major = 'CSE'
     order by GPA desc;
 
 # ------------------------------------------------------------------------
 select "";
 select "change every student to have the highest GPA";
 select "and smallest school size";
+
+select count(*)
+    from Student;
 
 select *
     from Student;
@@ -217,6 +256,9 @@ update Student
             (select *
                 from S);
 
+select count(*)
+    from Student;
+
 select *
     from Student;
 
@@ -224,11 +266,17 @@ select *
 select "";
 select "accept all students";
 
+select count(*)
+    from Apply;
+
 select *
     from Apply;
 
 update Apply
     set decision = true;
+
+select count(*)
+    from Apply;
 
 select *
     from Apply;
