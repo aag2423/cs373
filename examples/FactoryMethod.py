@@ -6,13 +6,13 @@
 
 # http://en.wikipedia.org/wiki/Factory_method_pattern
 
-class Room (object) :
+class Room () :
     pass
 
 class EnchantedRoom (Room) :
     pass
 
-class Door (object) :
+class Door () :
     def __init__ (self, r, s) :
         self.__r = r
         self.__s = s
@@ -21,7 +21,7 @@ class EnchantedDoor (Door) :
     def __init__ (self, r, s) :
     	Door.__init__(self, r, s)
 
-class Maze (object) :
+class Maze () :
     def __init__ (self) :
         self.__rooms  = []
         self.__doors  = []
@@ -38,7 +38,7 @@ class Maze (object) :
     def door (self, i) :
         return self.__doors[i]
 
-class Game (object) :
+class Game () :
     def create_maze (self) :
         m = Maze();
         m.add_room(self.make_room())

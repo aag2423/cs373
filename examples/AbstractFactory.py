@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # ------------------
 # AbstractFactory.py
@@ -6,13 +6,13 @@
 
 # http://en.wikipedia.org/wiki/Abstract_factory_pattern
 
-class Room (object) :
+class Room () :
     pass
 
 class EnchantedRoom (Room) :
     pass
 
-class Door (object) :
+class Door () :
     def __init__ (self, r, s) :
         self.__r = r
         self.__s = s
@@ -21,7 +21,7 @@ class EnchantedDoor (Door) :
     def __init__ (self, r, s) :
     	Door.__init__(self, r, s)
 
-class Maze (object) :
+class Maze () :
     def __init__ (self) :
         self.__rooms = []
         self.__doors = []
@@ -38,14 +38,14 @@ class Maze (object) :
     def door (self, i) :
         return self.__doors[i]
 
-class MazeFactory (object) :
+class MazeFactory () :
     def make_room (self) :
         return Room()
 
     def make_door (self, r, s) :
         return Door(r, s)
 
-class EnchantedMazeFactory (object) : # MazeFactory?
+class EnchantedMazeFactory () : # MazeFactory?
     def make_room (self) :
         return EnchantedRoom()
 
@@ -61,7 +61,7 @@ def create_maze (mf) :
     m.add_door(mf.make_door(m.room(1), m.room(2)))
     return m
 
-print "AbstractFactory.py"
+print("AbstractFactory.py")
 
 mf = MazeFactory()
 m  = create_maze(mf)
@@ -77,4 +77,4 @@ assert type(m)         is Maze
 assert type(m.room(0)) is EnchantedRoom
 assert type(m.door(0)) is EnchantedDoor
 
-print "Done."
+print("Done.")

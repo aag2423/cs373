@@ -6,13 +6,13 @@
 
 # http://en.wikipedia.org/wiki/Creational_pattern
 
-class Room (object) :
+class Room () :
     pass
 
 class EnchantedRoom (Room) :
     pass
 
-class Door (object) :
+class Door () :
     def __init__ (self, r, s) :
         self.__r = r
         self.__s = s
@@ -21,7 +21,7 @@ class EnchantedDoor (Door) :
     def __init__ (self, r, s) :
     	Door.__init__(self, r, s)
 
-class Maze (object) :
+class Maze () :
     def __init__ (self) :
         self.__rooms  = []
         self.__doors  = []
