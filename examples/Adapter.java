@@ -7,19 +7,22 @@
 import java.util.ArrayList;
 
 class Stack<T> {
-    private ArrayList<T> _al;
+    private ArrayList<T> _a;
 
     public Stack () {
-        _al = new ArrayList<T>();}
+        _a = new ArrayList<T>();}
 
-    public void push (T v) {
-        _al.add(v);}
+    public Boolean empty () {
+        return _a.isEmpty();}
 
     public void pop () {
-        _al.remove(_al.size() - 1);}
+        _a.remove(_a.size() - 1);}
+
+    public void push (T v) {
+        _a.add(v);}
 
     public T top () {
-        return _al.get(_al.size() - 1);}}
+        return _a.get(_a.size() - 1);}}
 
 final class Adapter {
     public static void main (String[] args) {

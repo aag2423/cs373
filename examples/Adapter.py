@@ -10,16 +10,19 @@ print "Adapter.py"
 
 class Stack :
     def __init__ (self) :
-        self.l = []
+        self.a = []
 
-    def push (self, v) :
-        self.l.append(v)
+    def empty (self) :
+        return not self.a
 
     def pop (self) :
-        self.l.pop()
+        self.a.pop()
+
+    def push (self, v) :
+        self.a.append(v)
 
     def top (self) :
-        return self.l[-1]
+        return self.a[-1]
 
 s = Stack()
 s.push(2)

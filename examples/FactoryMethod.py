@@ -18,8 +18,7 @@ class Door () :
         self.__s = s
 
 class EnchantedDoor (Door) :
-    def __init__ (self, r, s) :
-    	Door.__init__(self, r, s)
+	pass
 
 class Maze () :
     def __init__ (self) :

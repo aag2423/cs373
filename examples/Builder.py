@@ -18,8 +18,7 @@ class Door () :
         self.__s = s
 
 class EnchantedDoor (Door) :
-    def __init__ (self, r, s) :
-        Door.__init__(self, r, s)
+	pass
 
 class Maze () :
     def __init__ (self) :
@@ -52,9 +51,6 @@ class MazeBuilder () :
         return self.__maze
 
 class EnchantedMazeBuilder (MazeBuilder) :
-    def __init__ (self) :
-        MazeBuilder.__init__(self)
-
     def build_room (self) :
         self._MazeBuilder__maze.add_room(EnchantedRoom())
 
