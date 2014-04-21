@@ -7,27 +7,24 @@
 print("Nothing to be done.")
 
 """
-Implementation started in 1989 by Guido van Rossum of the Netherlands, now at Dropbox.
+Developed in 1989 by Guido van Rossum of the Netherlands, now at Dropbox.
 Python is procedural, object-oriented, dynamically typed, and garbage collected.
-"""
 
-"""
+
+
 % python3 -V
 Python 3.2.3
-%
 
 
 
 % python3 Hello.py
 Nothing to be done.
-%
 
 
 
 % chmod ugo+x Hello.py
 % Hello.py
 Nothing to be done.
-%
 
 
 
@@ -37,7 +34,6 @@ coverage report
 Name    Stmts   Miss Branch BrMiss  Cover
 -----------------------------------------
 Hello       2      0      0      0   100%
-%
 
 
 
@@ -50,7 +46,6 @@ Type "help", "copyright", "credits" or "license" for more information.
 Nothing to be done.
 
 >>> quit()
-%
 
 
 
@@ -133,7 +128,6 @@ interpreter, you can type "help(object)".  Executing "help('string')"
 has the same effect as typing a particular string at the help> prompt.
 
 >>> quit()
-%
 
 
 

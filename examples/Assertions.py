@@ -9,8 +9,6 @@ Turn OFF assertions at run time with -O.
 % python -O Assertions.py
 """
 
-print("Assertions.py")
-
 def cycle_length (n) :
     assert(n > 0)
     c = 0
@@ -22,6 +20,8 @@ def cycle_length (n) :
         c += 1
     assert(c > 0)
     return c
+
+print("Assertions.py")
 
 assert(cycle_length(1) == 1)
 assert(cycle_length(5) == 6)

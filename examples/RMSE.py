@@ -9,10 +9,6 @@ import math
 import sys
 import time
 
-print("RMSE.py")
-print(sys.version)
-print()
-
 def sqre_diff (x, y) :
     return (x - y) ** 2
 
@@ -29,7 +25,7 @@ def rmse_while (a, p) :
         i += 1
     return math.sqrt(v / s)
 
-def rmse_for_zip_range (a, p) :
+def rmse_range_for (a, p) :
     """
     O(1) in space
     O(n) in time
@@ -41,7 +37,7 @@ def rmse_for_zip_range (a, p) :
         i += 1
     return math.sqrt(v / s)
 
-def rmse_for_zip (a, p) :
+def rmse_zip_for (a, p) :
     """
     O(1) in space
     O(n) in time
@@ -53,7 +49,7 @@ def rmse_for_zip (a, p) :
         v += sqre_diff(x, y)
     return math.sqrt(v / s)
 
-def rmse_reduce (a, p) :
+def rmse_zip_reduce (a, p) :
     """
     O(1) in space
     O(n) in time
@@ -63,7 +59,7 @@ def rmse_reduce (a, p) :
     v = functools.reduce(lambda v, a : v + sqre_diff(a[0], a[1]), z, 0.0)
     return math.sqrt(v / s)
 
-def rmse_sum_map (a, p) :
+def rmse_map_sum (a, p) :
     """
     O(1) in space
     O(n) in time
@@ -72,7 +68,7 @@ def rmse_sum_map (a, p) :
     v = sum(map(sqre_diff, a, p))
     return math.sqrt(v / s)
 
-def rmse_sum_list_zip (a, p) :
+def rmse_zip_list_sum (a, p) :
     """
     O(n) in space
     O(n) in time
@@ -82,7 +78,7 @@ def rmse_sum_list_zip (a, p) :
     v = sum([sqre_diff(x, y) for x, y in z])
     return math.sqrt(v / s)
 
-def rmse_sum_gen_zip (a, p) :
+def rmse_zip_gen_sum (a, p) :
     """
     O(1) in space
     O(n) in time
@@ -105,13 +101,17 @@ def test (f) :
     print("%5.3f" % ((e - b) * 1000), "milliseconds")
     print()
 
+print("RMSE.py")
+print(sys.version)
+print()
+
 test(rmse_while)
-test(rmse_for_zip_range)
-test(rmse_for_zip)
-test(rmse_reduce)
-test(rmse_sum_map)
-test(rmse_sum_list_zip)
-test(rmse_sum_gen_zip)
+test(rmse_range_for)
+test(rmse_zip_for)
+test(rmse_zip_reduce)
+test(rmse_map_sum)
+test(rmse_zip_list_sum)
+test(rmse_zip_gen_sum)
 
 print("Done.")
 
@@ -123,22 +123,22 @@ RMSE.py
 rmse_while
 501.339 milliseconds
 
-rmse_for_zip_range
+rmse_range_for
 497.844 milliseconds
 
-rmse_for_zip
+rmse_zip_for
 423.167 milliseconds
 
-rmse_reduce
+rmse_zip_reduce
 545.354 milliseconds
 
-rmse_sum_map
+rmse_map_sum
 430.414 milliseconds
 
-rmse_sum_list_zip
+rmse_zip_list_sum
 383.953 milliseconds
 
-rmse_sum_gen_zip
+rmse_zip_gen_sum
 402.718 milliseconds
 
 Done.

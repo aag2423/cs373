@@ -4,8 +4,6 @@
 # Exceptions.py
 # -------------
 
-print("Exceptions.py")
-
 def f (b) :
     if b :
         raise NameError("abc")
@@ -27,6 +25,8 @@ except NameError as e :
     assert(e.args       ==     ("abc",))
 else :
     assert(False)
+
+print("Exceptions.py")
 
 assert(type(NameError) is type)
 assert(type(type)      is type)
