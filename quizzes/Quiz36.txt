@@ -1,0 +1,23 @@
+--
+CS373: Quiz #36 (5 pts) <Jake>
+--
+
+--------------------------------------------------------------------------
+ 1. In the context of rooms, doors, mazes, and games, describe the
+    difference between the FactoryMethod and AbstractFactory design
+    patterns.
+    (2 pts)
+--
+
+FactoryMethod subclasses game
+AbstractFactory creates a new class hierarchy, MazeFactory
+
+--------------------------------------------------------------------------
+ 2. Given ArrayList, DequeList, and LinkedList, which can NOT be the
+    backing container for Queue and why?
+    PriorityQueue and why?
+    (2 pts)
+--
+
+ArrayList, expensive in the front
+LinkedList, not random access
