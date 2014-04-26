@@ -85,7 +85,7 @@ select * from College;
 
 # ------------------------------------------------------------------------
 select "";
-select "students who applied to two majors";
+select "students who applied to two or more majors";
 
 select sID, count(distinct major)
     from Apply

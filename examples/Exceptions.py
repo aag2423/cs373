@@ -9,6 +9,8 @@ def f (b) :
         raise NameError("abc")
     return 0
 
+print("Exceptions.py")
+
 try :
     assert(f(False) == 0)
 except NameError :
@@ -25,8 +27,6 @@ except NameError as e :
     assert(e.args       ==     ("abc",))
 else :
     assert(False)
-
-print("Exceptions.py")
 
 assert(type(NameError) is type)
 assert(type(type)      is type)
